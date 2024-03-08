@@ -9,7 +9,9 @@
   <br/>
   Tecnologias a usar:
   <br/>
-  <img src="https://img.shields.io/badge/-SpringBoot-05122A?style=for-the-badge&logo=SpringBoot"/>
+  <!--<img src="https://img.shields.io/badge/-SpringBoot-05122A?style=for-the-badge&logo=SpringBoot&logoColor=white"/> !-->
+  <img src="https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white"/>
   <br/>
 </p>
 
