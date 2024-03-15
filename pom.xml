@@ -15,7 +15,7 @@
 	<name>reportes-plus-API</name>
 	<description>API para agilizar el acceso a la información presupuestal de la Universidad del Cauca.</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
