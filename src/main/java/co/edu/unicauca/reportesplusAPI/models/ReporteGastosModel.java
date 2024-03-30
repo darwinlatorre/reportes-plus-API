@@ -30,6 +30,8 @@ public class ReporteGastosModel {
      *
      */
     @Id
+    private Integer ID;
+
     @Column(name = "CODIGO")
     private String codigo;
 
