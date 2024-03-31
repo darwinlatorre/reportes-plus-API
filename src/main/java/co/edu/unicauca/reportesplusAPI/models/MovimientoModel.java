@@ -15,11 +15,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "MOCD")
 public class MovimientoModel {
     @Id
     private Integer ID;
-
     private String tipo_documento;
     private Integer numero_movimiento;
     private Date fecha;

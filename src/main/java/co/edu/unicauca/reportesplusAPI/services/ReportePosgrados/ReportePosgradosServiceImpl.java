@@ -25,7 +25,7 @@ public class ReportePosgradosServiceImpl implements ReportePosgradosService {
     }
 
     @Override
-    public ReporteGastosModel findByModel(String id) {
+    public ReporteGastosModel findByModel(Integer id) {
         return reporteGastosRepository.findById(id).orElse(null);
     }
 }

@@ -9,6 +9,6 @@ import java.util.List;
 public interface ReportePosgradosService {
 
      public List<ReporteGastosModel> findAll();
-     public ReporteGastosModel findByModel(String id);
+     public ReporteGastosModel findByModel(Integer id);
 
 }
