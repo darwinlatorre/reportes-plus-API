@@ -1,20 +1,15 @@
-package co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados;
+package co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReporteGastosPosEntity {
-
-    @Id
+public class GastoDTORes {
     private Integer ID;
     private String tipo_documento;
     private Integer numero_movimiento;
@@ -27,7 +22,6 @@ public class ReporteGastosPosEntity {
     private Double valor_pagado;
     private Double saldo;
     private String estado;
-
 
     public Integer getID() {
         return ID;
@@ -127,7 +121,7 @@ public class ReporteGastosPosEntity {
 
     @Override
     public String toString() {
-        return "ReporteGastosPosEntity{" +
+        return "GastoDTORes{" +
                 "ID=" + ID +
                 ", tipo_documento='" + tipo_documento + '\'' +
                 ", numero_movimiento=" + numero_movimiento +
