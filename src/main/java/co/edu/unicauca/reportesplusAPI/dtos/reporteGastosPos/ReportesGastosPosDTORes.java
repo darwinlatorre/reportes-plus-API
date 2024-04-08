@@ -8,7 +8,17 @@ public class ReportesGastosPosDTORes {
     private Date fechaInicio;
     private Date fechaFin;
     private float total;
+    private String codigoPosgrado;
     private List<GastoDTORes> gastos;
+
+
+    public String getCodigoPosgrado() {
+        return codigoPosgrado;
+    }
+
+    public void setCodigoPosgrado(String codigoPosgrado) {
+        this.codigoPosgrado = codigoPosgrado;
+    }
 
     public Date getFechaInicio() {
         return fechaInicio;

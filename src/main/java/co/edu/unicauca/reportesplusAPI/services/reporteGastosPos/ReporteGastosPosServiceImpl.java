@@ -49,6 +49,7 @@ public class ReporteGastosPosServiceImpl implements ReporteGastosPosService{
         ReportesGastosPosDTORes reporte = new ReportesGastosPosDTORes();
         reporte.setFechaInicio(fechaInicio);
         reporte.setFechaFin(fechaFin);
+        reporte.setCodigoPosgrado(codigo);
         reporte.setGastos(mapearGastosPorFechas(fechaInicio,fechaFin,codigo));
 
         List<GastoDTORes> listaGastos = mapearGastosPorFechas(fechaInicio, fechaFin, codigo);
