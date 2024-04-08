@@ -44,4 +44,5 @@ public class ReporteGastosPosDAO implements IntReporteGastosPosDAO {
         }
         return reportes;
     }
+
 }
