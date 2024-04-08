@@ -57,7 +57,7 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 		String codigo = "1432007";
 		System.out.println("\n\n\n***************************************** DTO por fecha");
 		ReportesGastosPosDTORes reporte = testService.generarReporte(fechaInicio,fechaFin,codigo);
-		System.out.println("DTO de tipo:  " +reporte +"\n\n");
+		System.out.println("DTO de tipo:  " + reporte +"\n\n");
 
 	}
 
