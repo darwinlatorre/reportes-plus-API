@@ -6,7 +6,7 @@
   Este repositorio alberga el código fuente de un API diseñado para agilizar el acceso a la información presupuestal de la Universidad del Cauca. El proyecto tiene como objetivo principal desarrollar un API que permita la consulta rápida y eficiente de diversos reportes financieros. Esta solución elimina la necesidad de comunicarse directamente con el área financiera, optimizando así el proceso de obtención de información y permitiendo a los diferentes departamentos y áreas de la universidad acceder de manera autónoma a los reportes de su interés.
   <br/>  
   <br/>
-  <a href="http://localhost:8080/api/v1/swagger-ui/index.html">Click to see swagger documentation.<a/>
+  <a href="http://localhost:8080/api/v1/swagger-ui/index.html">Da click para ver la documentación.<a/>
   <br/>
   <br/>
   Tecnologias a usar:
