@@ -1,20 +1,16 @@
 package co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReporteGastosPosEntity {
 
-    @Id
     private Integer ID;
     private String tipo_documento;
     private Integer numero_movimiento;
@@ -27,7 +23,6 @@ public class ReporteGastosPosEntity {
     private Double valor_pagado;
     private Double saldo;
     private String estado;
-
 
     public Integer getID() {
         return ID;
