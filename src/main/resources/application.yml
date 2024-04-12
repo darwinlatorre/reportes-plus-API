@@ -7,12 +7,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.OracleDialect
-    show-sql: true
   datasource:
     url: jdbc:oracle:thin:@//localhost:1521/xe
     username: SYSTEM
     password: admin
     driver-class-name: oracle.jdbc.OracleDriver
+# swagger link: http://localhost:8080/api/v1/swagger-ui/index.html
