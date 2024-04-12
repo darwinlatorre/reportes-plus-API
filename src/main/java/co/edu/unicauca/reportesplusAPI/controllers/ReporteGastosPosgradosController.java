@@ -5,10 +5,7 @@ import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.ReportesGastosPosDT
 import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteGastosPosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -25,8 +22,10 @@ public class ReporteGastosPosgradosController {
     @Autowired
     private ReporteGastosPosService vReporteService;
 
-    @GetMapping("/{fechaInicio}/{fechaFin}/{codigo}")
-    public ReportesGastosPosDTORes encontrarReportePorFecha(@PathVariable("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio, @PathVariable("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin, @PathVariable("codigo") String codigo) throws SQLException {
-        return vReporteService.generarReporte(fechaInicio,fechaFin,codigo);
+    @GetMapping
+    public ReportesGastosPosDTORes encontrarReportePorFecha(@RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
+                                                            @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin,
+                                                            @RequestParam("codigo") String codigo) throws SQLException {
+        return vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
     }
 }
