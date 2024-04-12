@@ -1,6 +1,5 @@
 package co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +9,6 @@ public class ReportesGastosPosDTORes {
     private float total;
     private String codigoPosgrado;
     private List<GastoDTORes> gastos;
-
 
     public String getCodigoPosgrado() {
         return codigoPosgrado;
@@ -55,11 +53,10 @@ public class ReportesGastosPosDTORes {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         sb.append("ReporteGastosPostDTORes:\n");
 
-        sb.append("Gastos en Rango de fechas: " +fechaInicio + " a: " + fechaFin + ":\n");
+        sb.append("Gastos en Rango de fechas: " + fechaInicio + " a: " + fechaFin + ":\n");
         for (GastoDTORes gasto : gastos) {
             sb.append(gasto).append("\n\n\n");
         }

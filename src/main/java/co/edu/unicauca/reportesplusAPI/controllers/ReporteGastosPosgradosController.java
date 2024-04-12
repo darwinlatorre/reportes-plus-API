@@ -1,17 +1,18 @@
 package co.edu.unicauca.reportesplusAPI.controllers;
 
-import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.GastoDTORes;
-import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.ReportesGastosPosDTORes;
-import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteGastosPosService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.*;
-
-import io.swagger.v3.oas.annotations.tags.Tag;
-
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.ReportesGastosPosDTORes;
+import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteGastosPosService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/posgrados/report")
@@ -23,9 +24,10 @@ public class ReporteGastosPosgradosController {
     private ReporteGastosPosService vReporteService;
 
     @GetMapping
-    public ReportesGastosPosDTORes encontrarReportePorFecha(@RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
-                                                            @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin,
-                                                            @RequestParam("codigo") String codigo) throws SQLException {
+    public ReportesGastosPosDTORes encontrarReportePorFecha(
+            @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
+            @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin,
+            @RequestParam("codigo") String codigo) throws SQLException {
         return vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
     }
 }
