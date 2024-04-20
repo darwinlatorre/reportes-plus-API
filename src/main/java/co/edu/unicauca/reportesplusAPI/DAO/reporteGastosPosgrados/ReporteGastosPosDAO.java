@@ -12,14 +12,16 @@ import java.util.List;
 import java.util.Objects;
 
 @Component
-public class ReporteGastosPosDAO implements IntReporteGastosPosDAO {
+public class ReporteGastosPosDAO  {
 
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
-    @Override
-    public List<ReporteGastosPosEntity> findAllReportes() throws SQLException {
+    public ReporteGastosPosDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public List<ReporteGastosPosEntity> findAllExpenseReport() throws SQLException {
         String sql = "SELECT m.ID, m.MOCDCDTD, m.MOCDCDND, m.MOCDFECH, m.MOCDCUMO, m.MOCDOBSE, m.MOCDVADE,m.MOCDVADE, m.MOCDVADE, m.MOCDVADE, m.MOCDVADE, m.MOCDESTA FROM MOCD m";
         List<ReporteGastosPosEntity> reportes = new ArrayList<>();
 

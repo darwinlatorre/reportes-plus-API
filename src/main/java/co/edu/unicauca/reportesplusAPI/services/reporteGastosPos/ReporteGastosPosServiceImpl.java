@@ -21,7 +21,7 @@ public class ReporteGastosPosServiceImpl implements ReporteGastosPosService{
     private ReporteGastosPosMapper gastoMapper;
     @Override
     public List<GastoDTORes> mapearGastos() throws SQLException {//Usar este metodo para obtener la lista de gastos mapeados a DTO
-        List<ReporteGastosPosEntity> gastosSinMapear=DAO.findAllReportes();
+        List<ReporteGastosPosEntity> gastosSinMapear=DAO.findAllExpenseReport();
 
         return gastosSinMapear
                 .stream().map(gastoEntity -> gastoMapper.gastoEntityToGastoDTO(gastoEntity))
@@ -30,7 +30,7 @@ public class ReporteGastosPosServiceImpl implements ReporteGastosPosService{
     @Override
     public List<GastoDTORes> mapearGastosPorFechas(Date fechaInicio, Date fechaFin, String codigo) throws SQLException {
 
-        List<ReporteGastosPosEntity> gastosSinMapear = DAO.findAllReportes();
+        List<ReporteGastosPosEntity> gastosSinMapear = DAO.findAllExpenseReport();
         return gastosSinMapear.stream()
                 .filter(gastoEntity -> {
                     Date fechaGasto = gastoEntity.getFecha();

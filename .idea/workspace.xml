@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c670f26d-8271-4ca1-99dd-3d60da65eecf" name="Changes" comment="Correcion codigo de posgrado como atributo del ReporteDTO">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/DAO/reporteIngresoPosgrados/ReporteIngresosPosDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/DAO/reporteIngresoPosgrados/ReporteIngresosPosEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/controllers/ReporteGastosPosgradosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/controllers/ReporteGastosPosgradosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/DAO/reporteGastosPosgrados/IntReporteGastosPosDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/DAO/reporteGastosPosgrados/ReporteGastosPosDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/DAO/reporteGastosPosgrados/ReporteGastosPosDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/ReportesPlusApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/ReportesPlusApiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/services/reporteGastosPos/ReporteGastosPosServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/services/reporteGastosPos/ReporteGastosPosServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,8 +44,8 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="1c18d79d-da9c-4e75-ae48-dfb72a406b7c" />
-        <option name="url" value="https://github.com/darwinlatorre/reportes-plus-API" />
+        <option name="accountId" value="f70949f3-c94a-4c90-9dcd-a3a3e9643293" />
+        <option name="url" value="https://github.com/darwinlatorre/reportes-plus-API.git" />
       </UrlAndAccount>
     </option>
   </component>
@@ -57,32 +64,41 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2emxGHnZ08t9JSa6HGPbhXrLE9S" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.27126437&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;2133d11d981e8b6e8a1d475e136dff90&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "dev",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.27126437",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "spring.configuration.checksum": "2133d11d981e8b6e8a1d475e136dff90",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "oracle"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="ReportesPlusApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />

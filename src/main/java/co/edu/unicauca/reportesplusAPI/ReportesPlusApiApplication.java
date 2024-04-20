@@ -2,6 +2,8 @@ package co.edu.unicauca.reportesplusAPI;
 
 import co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados.ReporteGastosPosDAO;
 import co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados.ReporteGastosPosEntity;
+import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngresosPosDAO;
+import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngresosPosEntity;
 import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.GastoDTORes;
 import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.ReportesGastosPosDTORes;
 import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteGastosPosService;
@@ -17,7 +19,7 @@ import java.util.List;
 public class ReportesPlusApiApplication implements CommandLineRunner {
 
 	@Autowired
-	private ReporteGastosPosDAO test;
+	private ReporteIngresosPosDAO test;
 	@Autowired
 	private ReporteGastosPosService testService;
 	public static void main(String[] args) {
@@ -29,11 +31,11 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		/*
-		System.out.println("\n\n\n***************************************** Gastos sin mapear");
-		for (ReporteGastosPosEntity gasto : test.findAllReportes())
-			System.out.println(gasto.getValor_definitivo().toString()); */
-
+/*
+		System.out.println("\n\n\n***************************************** Ingresos sin mapear");
+		for (ReporteIngresosPosEntity ingreso : test.findAllIncomeReport())
+			System.out.println(ingreso.getNombre_tercero());
+*/
 		/*
 		System.out.println("\n\n\n***************************************** Gastos mapeados by carrenio");
 		for(GastoDTORes gasto:testService.mapearGastos())
@@ -46,7 +48,7 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 			System.out.println(gasto.toString());
 		System.out.println("------------------------------------------------");
 		System.out.println(fechaInicio + "fecha inicio");
-		System.out.println(fechaFin + "fecha fin"); */
+		System.out.println(fechaFin + "fecha fin");
 
 
 		//Prueba del objeto
@@ -58,7 +60,7 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 		System.out.println("\n\n\n***************************************** DTO por fecha");
 		ReportesGastosPosDTORes reporte = testService.generarReporte(fechaInicio,fechaFin,codigo);
 		System.out.println("DTO de tipo:  " + reporte +"\n\n");
-
+		*/
 	}
 
 
