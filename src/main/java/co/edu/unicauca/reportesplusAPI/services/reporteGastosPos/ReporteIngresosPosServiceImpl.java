@@ -4,7 +4,7 @@ import co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados.ReporteGastosP
 import co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados.ReporteGastosPosEntity;
 import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngresosPosDAO;
 import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngresosPosEntity;
-import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.IngresoDTORes;
+import co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos.IngresoDTORes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

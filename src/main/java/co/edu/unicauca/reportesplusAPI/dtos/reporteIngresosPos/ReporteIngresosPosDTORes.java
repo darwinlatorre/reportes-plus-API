@@ -1,6 +1,5 @@
-package co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos;
+package co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos;
 
-import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.GastoDTORes;
 
 import java.util.Date;
 import java.util.List;

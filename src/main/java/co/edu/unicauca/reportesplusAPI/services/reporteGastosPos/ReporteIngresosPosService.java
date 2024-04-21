@@ -1,7 +1,8 @@
 package co.edu.unicauca.reportesplusAPI.services.reporteGastosPos;
 
 import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.GastoDTORes;
-import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.IngresoDTORes;
+import co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos.IngresoDTORes;
+
 
 import java.sql.SQLException;
 import java.util.List;

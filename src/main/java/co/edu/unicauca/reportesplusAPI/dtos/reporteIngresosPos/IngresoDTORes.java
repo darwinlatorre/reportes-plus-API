@@ -1,4 +1,4 @@
-package co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos;
+package co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -92,3 +92,4 @@ public class IngresoDTORes {
         this.valor_ejecutado = valor_ejecutado;
     }
 }
+

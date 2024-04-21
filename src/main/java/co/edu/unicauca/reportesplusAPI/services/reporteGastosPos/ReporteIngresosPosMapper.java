@@ -2,7 +2,7 @@ package co.edu.unicauca.reportesplusAPI.services.reporteGastosPos;
 import co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados.ReporteGastosPosEntity;
 import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngresosPosEntity;
 import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.GastoDTORes;
-import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.IngresoDTORes;
+import co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos.IngresoDTORes;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
