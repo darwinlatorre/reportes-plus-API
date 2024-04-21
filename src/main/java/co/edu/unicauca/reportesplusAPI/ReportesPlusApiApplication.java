@@ -5,8 +5,10 @@ import co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados.ReporteGastosP
 import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngresosPosDAO;
 import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngresosPosEntity;
 import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.GastoDTORes;
+import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.IngresoDTORes;
 import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.ReportesGastosPosDTORes;
 import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteGastosPosService;
+import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteIngresosPosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,6 +24,8 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 	private ReporteIngresosPosDAO test;
 	@Autowired
 	private ReporteGastosPosService testService;
+	@Autowired
+	private ReporteIngresosPosService testIngresosService;
 	public static void main(String[] args) {
 
 		SpringApplication.run(ReportesPlusApiApplication.class, args);
@@ -31,11 +35,11 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-/*
+	/*
 		System.out.println("\n\n\n***************************************** Ingresos sin mapear");
 		for (ReporteIngresosPosEntity ingreso : test.findAllIncomeReport())
-			System.out.println(ingreso.getNombre_tercero());
-*/
+			System.out.println(ingreso);/*
+
 		/*
 		System.out.println("\n\n\n***************************************** Gastos mapeados by carrenio");
 		for(GastoDTORes gasto:testService.mapearGastos())
@@ -61,8 +65,10 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 		ReportesGastosPosDTORes reporte = testService.generarReporte(fechaInicio,fechaFin,codigo);
 		System.out.println("DTO de tipo:  " + reporte +"\n\n");
 		*/
+
+		System.out.println("\n\n\n***************************************** Ingresos mapeados");
+		for (IngresoDTORes ingreso : testIngresosService.mapearIngresos())
+			System.out.println(ingreso.getId());
 	}
-
-
 
 }
