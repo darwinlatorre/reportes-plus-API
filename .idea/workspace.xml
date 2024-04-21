@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c670f26d-8271-4ca1-99dd-3d60da65eecf" name="Changes" comment="Correcion codigo de posgrado como atributo del ReporteDTO">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/DAO/reporteIngresoPosgrados/ReporteIngresosPosDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/DAO/reporteIngresoPosgrados/ReporteIngresosPosEntity.java" afterDir="false" />
+    <list default="true" id="0c322b77-dc7d-4e77-9dd6-229c94e95a67" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/DAO/reporteGastosPosgrados/IntReporteGastosPosDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/DAO/reporteGastosPosgrados/ReporteGastosPosDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/DAO/reporteGastosPosgrados/ReporteGastosPosDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/ReportesPlusApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/ReportesPlusApiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/services/reporteGastosPos/ReporteGastosPosServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/services/reporteGastosPos/ReporteGastosPosServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +18,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -35,20 +31,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;jccarreno&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="f70949f3-c94a-4c90-9dcd-a3a3e9643293" />
-        <option name="url" value="https://github.com/darwinlatorre/reportes-plus-API.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -59,14 +41,11 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 2
-}</component>
-  <component name="ProjectId" id="2emxGHnZ08t9JSa6HGPbhXrLE9S" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2fO3ewey5DH0Q6Jjnf7sncGIVcj" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -79,24 +58,13 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "dev",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.27126437",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "spring.configuration.checksum": "2133d11d981e8b6e8a1d475e136dff90",
     "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "oracle"
-    ]
   }
 }]]></component>
   <component name="RunManager">
@@ -112,61 +80,16 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c670f26d-8271-4ca1-99dd-3d60da65eecf" name="Changes" comment="" />
-      <created>1712523460201</created>
+      <changelist id="0c322b77-dc7d-4e77-9dd6-229c94e95a67" name="Changes" comment="" />
+      <created>1713658399766</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1712523460201</updated>
-      <workItem from="1712523467500" duration="2880000" />
-      <workItem from="1712526367725" duration="119000" />
-      <workItem from="1712612048674" duration="3146000" />
-      <workItem from="1712858687542" duration="71000" />
-      <workItem from="1712950910643" duration="325000" />
+      <updated>1713658399766</updated>
+      <workItem from="1713658404490" duration="778000" />
     </task>
-    <task id="LOCAL-00001" summary="Implementacion del mapper de entity a GastoDTO">
-      <option name="closed" value="true" />
-      <created>1712525700838</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1712525700838</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Implementacion del mapper de entity a GastoDTO">
-      <option name="closed" value="true" />
-      <created>1712612205396</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1712612205396</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Correcion codigo de posgrado como atributo del ReporteDTO">
-      <option name="closed" value="true" />
-      <created>1712613128323</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1712613128323</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implementacion del mapper de entity a GastoDTO" />
-    <MESSAGE value="Correcion codigo de posgrado como atributo del ReporteDTO" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correcion codigo de posgrado como atributo del ReporteDTO" />
   </component>
 </project>
