@@ -91,5 +91,20 @@ public class IngresoDTORes {
     public void setValor_ejecutado(Number valor_ejecutado) {
         this.valor_ejecutado = valor_ejecutado;
     }
+
+    @Override
+    public String toString() {
+        return "IngresoDTO{" +
+                "id=" + id +
+                ", tipo_documento='" + tipo_documento + '\'' +
+                ", numero_movimiento=" + numero_movimiento +
+                ", fecha=" + fecha +
+                ", cuenta_movimiento='" + cuenta_movimiento + '\'' +
+                ", observacion='" + observacion + '\'' +
+                ", id_tercero=" + id_tercero +
+                ", nombre_tercero='" + nombre_tercero + '\'' +
+                ", valor_ejecutado=" + valor_ejecutado +
+                '}';
+    }
 }
 

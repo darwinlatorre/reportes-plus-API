@@ -7,6 +7,7 @@ import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngres
 import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.GastoDTORes;
 import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.ReportesGastosPosDTORes;
 import co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos.IngresoDTORes;
+import co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos.ReporteIngresosPosDTORes;
 import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteGastosPosService;
 import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteIngresosPosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 	@Autowired
 	private ReporteIngresosPosDAO test;
 	@Autowired
-	private ReporteGastosPosService testService;
+	private ReporteIngresosPosService testService;
 	@Autowired
 	private ReporteIngresosPosService testIngresosService;
 	public static void main(String[] args) {
@@ -39,6 +40,10 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 		System.out.println("\n\n\n***************************************** Ingresos sin mapear");
 		for (ReporteIngresosPosEntity ingreso : test.findAllIncomeReport())
 			System.out.println(ingreso);/*
+
+
+	 */
+
 
 		/*
 		System.out.println("\n\n\n***************************************** Gastos mapeados by carrenio");
@@ -66,9 +71,47 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 		System.out.println("DTO de tipo:  " + reporte +"\n\n");
 		*/
 
-		System.out.println("\n\n\n***************************************** Ingresos mapeados");
+		/*System.out.println("\n\n\n***************************************** Ingresos mapeados");
 		for (IngresoDTORes ingreso : testIngresosService.mapearIngresos())
 			System.out.println(ingreso.getId());
+			 */
+
+
+		//ingresos
+
+		/*
+		System.out.println("\n\n\n***************************************** Ingresos sin mapear");
+		for (ReporteIngresosPosEntity ingreso : test.findAllIncomeReport())
+			System.out.println(ingreso);  */
+
+
+
+		/*Date fechaInicio = new Date(2021-1900, 8, 14); // Año, mes, día (mes es zero-based)
+		Date fechaFin = new Date(2025-1900, 12, 28); // Año, mes, día (mes es zero-based)
+
+		System.out.println("\n\n\n***************************************** Gastos mapeados por fecha");
+		List<List<IngresoDTORes>> ingresosMapeados = testService.mapearIngresosPorFechas(fechaInicio, fechaFin, "1432007");
+
+		List<IngresoDTORes> ingresosPositivos = ingresosMapeados.get(0);
+		List<IngresoDTORes> descuentos = ingresosMapeados.get(1);
+
+		System.out.println("Ingresos Positivos:");
+		for (IngresoDTORes ingreso : ingresosPositivos)
+			System.out.println(ingreso.toString());
+
+		System.out.println("Descuentos:");
+		for (IngresoDTORes ingreso : descuentos)
+			System.out.println(ingreso.toString());*/
+
+		Date fechaInicio = new Date(2023-1900, 11, 5); // Año, mes, día (mes es zero-based)
+		Date fechaFin = new Date(2023-1900, 11, 5); // Año, mes, día (mes es zero-based)
+
+
+
+		System.out.println("\n\n\n***************************************** DTO por fecha");
+		ReporteIngresosPosDTORes reporte = testService.generarReporte(fechaInicio,fechaFin,"1432007");
+		System.out.println("DTO de tipo:  " + reporte +"\n\n");
+
 	}
 
 }
