@@ -106,7 +106,7 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 
 
 		Date fechaInicio = new Date(2023-1900, 11, 3); // Año, mes, día (mes es zero-based)
-		Date fechaFin = new Date(2023-1900, 11, 5); // Año, mes, día (mes es zero-based)
+		Date fechaFin = new Date(2023-1900, 11, 6); // Año, mes, día (mes es zero-based)
 
 
 

@@ -33,7 +33,6 @@ public class ReporteIngresosPosgradosController {
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
             @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin,
             @RequestParam("codigo") String codigo) throws SQLException, JsonProcessingException {
-
         return  vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
     }
 

@@ -47,7 +47,7 @@ public class ReporteIngresosPosServiceImpl implements ReporteIngresosPosService{
             String cuentaMovimiento = ingresosEntity.getCuenta_movimiento();
             String codigoTipo = cuentaMovimiento.substring(cuentaMovimiento.lastIndexOf(".") + 1);
 
-            if (!fechaGasto.before(fechaInicio) && !fechaGasto.after(fechaFin) && codigoTipo.equals(codigo)) {
+            if (fechaGasto.before(fechaFin) && fechaGasto.after(fechaInicio) && codigoTipo.equals(codigo)) {
                 IngresoDTORes ingresoDTO = ingresoMapper.ingresoEntityToIngresoDTO(ingresosEntity);
                 double valorEjecutado = ingresosEntity.getValor_ejecutado().doubleValue(); // Convertir a double
                 if (valorEjecutado < 0) {

@@ -36,7 +36,7 @@ public class ReporteGastosPosServiceImpl implements ReporteGastosPosService{
                     Date fechaGasto = gastoEntity.getFecha();
                     String cuentaMovimiento = gastoEntity.getCuenta_movimiento();
                     String codigoTipo = cuentaMovimiento.substring(cuentaMovimiento.lastIndexOf(".") + 1);
-                    return !fechaGasto.before(fechaInicio) && !fechaGasto.after(fechaFin) && codigoTipo.equals(codigo);
+                    return fechaGasto.before(fechaFin) && fechaGasto.after(fechaInicio) && codigoTipo.equals(codigo);
                 })
                 .map(gastoEntity -> gastoMapper.gastoEntityToGastoDTO(gastoEntity))
                 .collect(Collectors.toList());
