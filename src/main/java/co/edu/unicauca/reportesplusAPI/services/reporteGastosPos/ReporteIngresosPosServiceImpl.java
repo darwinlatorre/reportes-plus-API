@@ -1,5 +1,7 @@
 package co.edu.unicauca.reportesplusAPI.services.reporteGastosPos;
 
+import co.edu.unicauca.reportesplusAPI.DAO.CodigosPosgrados.CodigosPosgradosDAO;
+import co.edu.unicauca.reportesplusAPI.DAO.CodigosPosgrados.CodigosPosgradosEntity;
 import co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados.ReporteGastosPosDAO;
 import co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados.ReporteGastosPosEntity;
 import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngresosPosDAO;
@@ -24,6 +26,8 @@ public class ReporteIngresosPosServiceImpl implements ReporteIngresosPosService{
     private ReporteIngresosPosDAO DAO;
     @Autowired
     private ReporteIngresosPosMapper ingresoMapper;
+    @Autowired
+    private CodigosPosgradosDAO DAOCodigosPosgrados;
 
     @Override
     public List<IngresoDTORes> mapearIngresos() throws SQLException {
@@ -92,6 +96,14 @@ public class ReporteIngresosPosServiceImpl implements ReporteIngresosPosService{
         reporte.setDescuentos(descuentos);
         reporte.setTotal_ingresos(sumaIngreso);
         reporte.setTotal_descuentos(sumaDescuentos);
+
+        for(CodigosPosgradosEntity entity:DAOCodigosPosgrados.findAllCodes())
+        {
+            if(entity.getCodigo().equals(codigo))
+            {
+                reporte.setNombrePosgrado(entity.getDescripcion());
+            }
+        }
 
         return reporte;
     }

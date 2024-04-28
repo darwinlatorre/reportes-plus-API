@@ -8,6 +8,7 @@ public class ReportesGastosPosDTORes {
     private Date fechaFin;
     private float total;
     private String codigoPosgrado;
+    private String nombrePosgrado;
     private List<GastoDTORes> gastos;
 
     public String getCodigoPosgrado() {
@@ -48,6 +49,14 @@ public class ReportesGastosPosDTORes {
 
     public void setGastos(List<GastoDTORes> gastos) {
         this.gastos = gastos;
+    }
+
+    public String getNombrePosgrado() {
+        return nombrePosgrado;
+    }
+
+    public void setNombrePosgrado(String nombrePosgrado) {
+        this.nombrePosgrado = nombrePosgrado;
     }
 
     @Override

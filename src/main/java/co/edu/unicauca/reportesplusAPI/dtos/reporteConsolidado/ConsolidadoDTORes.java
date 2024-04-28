@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConsolidadoDTORes {
+    private String codigoPosgrado;
+    private String nombrePosgrado;
     private float total_ingresos;
     private float total_descuentos;
     private float total_neto;
@@ -70,5 +72,21 @@ public class ConsolidadoDTORes {
 
     public void setSaldo(float saldo) {
         this.saldo = saldo;
+    }
+
+    public String getCodigoPosgrado() {
+        return codigoPosgrado;
+    }
+
+    public void setCodigoPosgrado(String codigoPosgrado) {
+        this.codigoPosgrado = codigoPosgrado;
+    }
+
+    public String getNombrePosgrado() {
+        return nombrePosgrado;
+    }
+
+    public void setNombrePosgrado(String nombrePosgrado) {
+        this.nombrePosgrado = nombrePosgrado;
     }
 }

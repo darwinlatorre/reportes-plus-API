@@ -1,5 +1,7 @@
 package co.edu.unicauca.reportesplusAPI;
 
+import co.edu.unicauca.reportesplusAPI.DAO.CodigosPosgrados.CodigosPosgradosDAO;
+import co.edu.unicauca.reportesplusAPI.DAO.CodigosPosgrados.CodigosPosgradosEntity;
 import co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados.ReporteGastosPosDAO;
 import co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados.ReporteGastosPosEntity;
 import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngresosPosDAO;
@@ -27,6 +29,8 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 	private ReporteIngresosPosService testService;
 	@Autowired
 	private ReporteIngresosPosService testIngresosService;
+	@Autowired
+	private CodigosPosgradosDAO testDaoCodigos;
 	public static void main(String[] args) {
 
 		SpringApplication.run(ReportesPlusApiApplication.class, args);
@@ -104,7 +108,7 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 			System.out.println(ingreso.toString());*/
 
 
-
+/*
 		Date fechaInicio = new Date(2023-1900, 11, 3); // Año, mes, día (mes es zero-based)
 		Date fechaFin = new Date(2023-1900, 11, 6); // Año, mes, día (mes es zero-based)
 
@@ -112,8 +116,13 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 
 		System.out.println("\n\n\n***************************************** DTO por fecha");
 		ReporteIngresosPosDTORes reporte = testService.generarReporte(fechaInicio,fechaFin,"1432007");
-		System.out.println("DTO de tipo:  " + reporte +"\n\n");
+		System.out.println("DTO de tipo:  " + reporte +"\n\n");*/
 
+
+		for(CodigosPosgradosEntity entity:testDaoCodigos.findAllCodes())
+		{
+			System.out.println(entity.getCodigo()+" "+entity.getDescripcion());
+		}
 	}
 
 }

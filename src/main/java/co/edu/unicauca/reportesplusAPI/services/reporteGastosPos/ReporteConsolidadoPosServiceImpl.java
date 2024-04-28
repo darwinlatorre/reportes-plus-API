@@ -1,5 +1,7 @@
 package co.edu.unicauca.reportesplusAPI.services.reporteGastosPos;
 
+import co.edu.unicauca.reportesplusAPI.DAO.CodigosPosgrados.CodigosPosgradosDAO;
+import co.edu.unicauca.reportesplusAPI.DAO.CodigosPosgrados.CodigosPosgradosEntity;
 import co.edu.unicauca.reportesplusAPI.dtos.reporteConsolidado.ConsolidadoDTORes;
 import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.ReportesGastosPosDTORes;
 import co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos.ReporteIngresosPosDTORes;
@@ -16,20 +18,33 @@ public class ReporteConsolidadoPosServiceImpl implements ReporteConsolidadoPosSe
     private ReporteGastosPosService vReporteGastosService;
     @Autowired
     private ReporteIngresosPosService vReporteIngresosService;
+    @Autowired
+    private CodigosPosgradosDAO DAOCodigosPosgrados;
 
 
     @Override
     public ConsolidadoDTORes generarConsolidado(Date fechaInicio, Date fechaFin, String codigo) throws SQLException {
-        ConsolidadoDTORes consolidado=new ConsolidadoDTORes();
-        ReportesGastosPosDTORes gastos=vReporteGastosService.generarReporte(fechaInicio,fechaFin,codigo);
-        ReporteIngresosPosDTORes ingresos=vReporteIngresosService.generarReporte(fechaInicio,fechaFin,codigo);
-        consolidado.setTotal_ingresos(ingresos.getTotal_ingresos());
-        consolidado.setTotal_descuentos(ingresos.getTotal_descuentos());
-        consolidado.setTotal_neto(ingresos.getTotal_ingresos()- ingresos.getTotal_descuentos());
-        consolidado.setContribucion(consolidado.getTotal_neto()*0.20f);
-        consolidado.setTotal_disponible(consolidado.getTotal_neto()-consolidado.getContribucion());
-        consolidado.setGastos_certificados(gastos.getTotal());
-        consolidado.setSaldo(consolidado.getTotal_disponible()-consolidado.getGastos_certificados());
-        return consolidado;
+
+
+        for(CodigosPosgradosEntity entity:DAOCodigosPosgrados.findAllCodes())
+        {
+            if(entity.getCodigo().equals(codigo))
+            {
+                ConsolidadoDTORes consolidado=new ConsolidadoDTORes();
+                ReportesGastosPosDTORes gastos=vReporteGastosService.generarReporte(fechaInicio,fechaFin,codigo);
+                ReporteIngresosPosDTORes ingresos=vReporteIngresosService.generarReporte(fechaInicio,fechaFin,codigo);
+                consolidado.setTotal_ingresos(ingresos.getTotal_ingresos());
+                consolidado.setTotal_descuentos(ingresos.getTotal_descuentos());
+                consolidado.setTotal_neto(ingresos.getTotal_ingresos()- ingresos.getTotal_descuentos());
+                consolidado.setContribucion(consolidado.getTotal_neto()*0.20f);
+                consolidado.setTotal_disponible(consolidado.getTotal_neto()-consolidado.getContribucion());
+                consolidado.setGastos_certificados(gastos.getTotal());
+                consolidado.setSaldo(consolidado.getTotal_disponible()-consolidado.getGastos_certificados());
+                consolidado.setNombrePosgrado(entity.getDescripcion());
+                consolidado.setCodigoPosgrado(codigo);
+                return consolidado;
+            }
+        }
+        return null;
     }
 }

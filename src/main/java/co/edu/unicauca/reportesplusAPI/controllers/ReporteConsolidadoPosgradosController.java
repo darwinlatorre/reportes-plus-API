@@ -7,6 +7,8 @@ import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteConsolid
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,10 +25,13 @@ public class ReporteConsolidadoPosgradosController {
     ReporteConsolidadoPosService vConsolidadoService;
 
     @GetMapping
-    public ConsolidadoDTORes encontrarConsolidadoPorFecha(
+    public ResponseEntity<ConsolidadoDTORes> encontrarConsolidadoPorFecha(
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
             @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin,
             @RequestParam("codigo") String codigo) throws SQLException {
-        return vConsolidadoService.generarConsolidado(fechaInicio, fechaFin, codigo);
+        ConsolidadoDTORes consolidado=vConsolidadoService.generarConsolidado(fechaInicio, fechaFin, codigo);
+        if(consolidado==null)
+            return new ResponseEntity<>(consolidado, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(consolidado, HttpStatus.OK);
     }
 }

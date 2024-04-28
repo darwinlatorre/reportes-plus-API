@@ -8,6 +8,7 @@ public class ReporteIngresosPosDTORes {
     private Date fechaInicio;
     private Date fechaFin;
     private String codigoPosgrado;
+    private String nombrePosgrado;
     private float total_ingresos;
     private float total_descuentos;
     private List<IngresoDTORes> ingresos;
@@ -68,6 +69,14 @@ public class ReporteIngresosPosDTORes {
 
     public void setDescuentos(List<IngresoDTORes> descuentos) {
         this.descuentos = descuentos;
+    }
+
+    public String getNombrePosgrado() {
+        return nombrePosgrado;
+    }
+
+    public void setNombrePosgrado(String nombrePosgrado) {
+        this.nombrePosgrado = nombrePosgrado;
     }
 
     @Override
