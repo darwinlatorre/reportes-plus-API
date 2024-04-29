@@ -118,11 +118,11 @@ public class ReportesPlusApiApplication implements CommandLineRunner {
 		ReporteIngresosPosDTORes reporte = testService.generarReporte(fechaInicio,fechaFin,"1432007");
 		System.out.println("DTO de tipo:  " + reporte +"\n\n");*/
 
-
+		/*
 		for(CodigosPosgradosEntity entity:testDaoCodigos.findAllCodes())
 		{
 			System.out.println(entity.getCodigo()+" "+entity.getDescripcion());
-		}
+		}*/
 	}
 
 }
