@@ -1,10 +1,10 @@
 package co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.*;
-
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -16,8 +16,8 @@ public class ReporteIngresosPosEntity {
     private Date fecha;
     private String cuenta_movimiento;
     private String observacion;
-    //FIXME: categoria aparece en el diagrama pero no en la bd.
-    //private String categoria;
+    // FIXME: categoria aparece en el diagrama pero no en la bd.
+    // private String categoria;
     private Number id_tercero;
     private String nombre_tercero;
     private Number valor_ejecutado;
@@ -111,6 +111,7 @@ public class ReporteIngresosPosEntity {
     public void setValor_ejecutado(Number valor_ejecutado) {
         this.valor_ejecutado = valor_ejecutado;
     }
+
     @Override
     public String toString() {
         return "ReporteGastosPosEntity{" +

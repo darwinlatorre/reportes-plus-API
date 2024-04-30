@@ -1,9 +1,5 @@
 package co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,9 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Component
-public class ReporteGastosPosDAO  {
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
+@Component
+public class ReporteGastosPosDAO {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -25,8 +23,9 @@ public class ReporteGastosPosDAO  {
         String sql = "SELECT m.ID, m.MOCDCDTD, m.MOCDCDND, m.MOCDFECH, m.MOCDCUMO, m.MOCDOBSE, m.MOCDVADE,m.MOCDVADE, m.MOCDVADE, m.MOCDVADE, m.MOCDVADE, m.MOCDESTA FROM MOCD m";
         List<ReporteGastosPosEntity> reportes = new ArrayList<>();
 
-        try (PreparedStatement stmt = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection().prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try (PreparedStatement stmt = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection()
+                .prepareStatement(sql);
+                ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
                 ReporteGastosPosEntity reporte = new ReporteGastosPosEntity();
                 reporte.setID((rs.getInt("ID")));

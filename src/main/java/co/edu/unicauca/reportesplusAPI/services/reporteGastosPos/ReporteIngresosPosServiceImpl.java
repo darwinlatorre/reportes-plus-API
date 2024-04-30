@@ -1,26 +1,23 @@
 package co.edu.unicauca.reportesplusAPI.services.reporteGastosPos;
 
-import co.edu.unicauca.reportesplusAPI.DAO.CodigosPosgrados.CodigosPosgradosDAO;
-import co.edu.unicauca.reportesplusAPI.DAO.CodigosPosgrados.CodigosPosgradosEntity;
-import co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados.ReporteGastosPosDAO;
-import co.edu.unicauca.reportesplusAPI.DAO.reporteGastosPosgrados.ReporteGastosPosEntity;
-import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngresosPosDAO;
-import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngresosPosEntity;
-import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.GastoDTORes;
-import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.ReportesGastosPosDTORes;
-import co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos.IngresoDTORes;
-import co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos.ReporteIngresosPosDTORes;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import co.edu.unicauca.reportesplusAPI.DAO.CodigosPosgrados.CodigosPosgradosDAO;
+import co.edu.unicauca.reportesplusAPI.DAO.CodigosPosgrados.CodigosPosgradosEntity;
+import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngresosPosDAO;
+import co.edu.unicauca.reportesplusAPI.DAO.reporteIngresoPosgrados.ReporteIngresosPosEntity;
+import co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos.IngresoDTORes;
+import co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos.ReporteIngresosPosDTORes;
+
 @Service
-public class ReporteIngresosPosServiceImpl implements ReporteIngresosPosService{
+public class ReporteIngresosPosServiceImpl implements ReporteIngresosPosService {
 
     @Autowired
     private ReporteIngresosPosDAO DAO;
@@ -31,7 +28,7 @@ public class ReporteIngresosPosServiceImpl implements ReporteIngresosPosService{
 
     @Override
     public List<IngresoDTORes> mapearIngresos() throws SQLException {
-        List<ReporteIngresosPosEntity> ingresosSinMapear=DAO.findAllIncomeReport();
+        List<ReporteIngresosPosEntity> ingresosSinMapear = DAO.findAllIncomeReport();
 
         return ingresosSinMapear
                 .stream().map(ingresosEntity -> ingresoMapper.ingresoEntityToIngresoDTO(ingresosEntity))
@@ -39,7 +36,8 @@ public class ReporteIngresosPosServiceImpl implements ReporteIngresosPosService{
     }
 
     @Override
-    public List<List<IngresoDTORes>> mapearIngresosPorFechas(Date fechaInicio, Date fechaFin, String codigo) throws SQLException {
+    public List<List<IngresoDTORes>> mapearIngresosPorFechas(Date fechaInicio, Date fechaFin, String codigo)
+            throws SQLException {
 
         List<ReporteIngresosPosEntity> ingresosSinMapear = DAO.findAllIncomeReport();
 
@@ -69,17 +67,17 @@ public class ReporteIngresosPosServiceImpl implements ReporteIngresosPosService{
         return resultado;
     }
 
-    public ReporteIngresosPosDTORes generarReporte(Date fechaInicio, Date fechaFin, String codigo) throws SQLException{
+    public ReporteIngresosPosDTORes generarReporte(Date fechaInicio, Date fechaFin, String codigo) throws SQLException {
 
-        //crear el DTO
+        // crear el DTO
         ReporteIngresosPosDTORes reporte = new ReporteIngresosPosDTORes();
 
-        //llamar al metodo mapearIngresos por fecha y sacar sus dos listas
+        // llamar al metodo mapearIngresos por fecha y sacar sus dos listas
         List<List<IngresoDTORes>> ingresosMapeados = mapearIngresosPorFechas(fechaInicio, fechaFin, codigo);
         List<IngresoDTORes> ingresos = ingresosMapeados.get(0);
         List<IngresoDTORes> descuentos = ingresosMapeados.get(1);
 
-        //sacar la suma de los ingresos y la suma de los descuentos
+        // sacar la suma de los ingresos y la suma de los descuentos
         float sumaIngreso = (float) ingresos.stream()
                 .mapToDouble(gasto -> (double) gasto.getValor_ejecutado())
                 .sum();
@@ -87,7 +85,7 @@ public class ReporteIngresosPosServiceImpl implements ReporteIngresosPosService{
                 .mapToDouble(gasto -> (double) gasto.getValor_ejecutado())
                 .sum();
 
-        //set al DTO
+        // set al DTO
 
         reporte.setFechaInicio(fechaInicio);
         reporte.setFechaFin(fechaFin);
@@ -97,10 +95,8 @@ public class ReporteIngresosPosServiceImpl implements ReporteIngresosPosService{
         reporte.setTotal_ingresos(sumaIngreso);
         reporte.setTotal_descuentos(sumaDescuentos);
 
-        for(CodigosPosgradosEntity entity:DAOCodigosPosgrados.findAllCodes())
-        {
-            if(entity.getCodigo().equals(codigo))
-            {
+        for (CodigosPosgradosEntity entity : DAOCodigosPosgrados.findAllCodes()) {
+            if (entity.getCodigo().equals(codigo)) {
                 reporte.setNombrePosgrado(entity.getDescripcion());
             }
         }

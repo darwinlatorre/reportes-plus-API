@@ -1,10 +1,11 @@
 package co.edu.unicauca.reportesplusAPI.controllers;
 
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-import co.edu.unicauca.reportesplusAPI.dtos.reporteConsolidado.ConsolidadoDTORes;
-import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.ReportesGastosPosDTORes;
-import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteConsolidadoPosService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -14,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import co.edu.unicauca.reportesplusAPI.dtos.reporteConsolidado.ConsolidadoDTORes;
+import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteConsolidadoPosService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/posgrados/reporte/consolidado")
@@ -27,14 +26,13 @@ public class ReporteConsolidadoPosgradosController {
     @Autowired
     ReporteConsolidadoPosService vConsolidadoService;
 
-
     @GetMapping("/fecha")
     public ResponseEntity<ConsolidadoDTORes> encontrarConsolidadoPorFecha(
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
             @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin,
             @RequestParam("codigo") String codigo) throws SQLException {
-        ConsolidadoDTORes consolidado=vConsolidadoService.generarConsolidado(fechaInicio, fechaFin, codigo);
-        if(consolidado==null)
+        ConsolidadoDTORes consolidado = vConsolidadoService.generarConsolidado(fechaInicio, fechaFin, codigo);
+        if (consolidado == null)
             return new ResponseEntity<>(consolidado, HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(consolidado, HttpStatus.OK);
     }
@@ -75,11 +73,11 @@ public class ReporteConsolidadoPosgradosController {
         System.out.println("Fecha de inicio del mes: " + formatoFecha.format(fechaInicio));
         System.out.println("Fecha de final de mes: " + formatoFecha.format(fechaFin));
 
-
-
-        ConsolidadoDTORes consolidado=vConsolidadoService.generarConsolidado(fechaInicio, fechaFin, codigo);
-        /*if(consolidado==null)
-            return new ResponseEntity<>(consolidado, HttpStatus.NOT_FOUND);*/
+        ConsolidadoDTORes consolidado = vConsolidadoService.generarConsolidado(fechaInicio, fechaFin, codigo);
+        /*
+         * if(consolidado==null)
+         * return new ResponseEntity<>(consolidado, HttpStatus.NOT_FOUND);
+         */
         return new ResponseEntity<>(consolidado, HttpStatus.OK);
     }
 }

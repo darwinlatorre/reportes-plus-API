@@ -1,13 +1,11 @@
 package co.edu.unicauca.reportesplusAPI.controllers;
 
-import co.edu.unicauca.reportesplusAPI.dtos.reporteGastosPos.ReportesGastosPosDTORes;
-import co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos.ReporteIngresosPosDTORes;
-import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteGastosPosService;
-import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteIngresosPosService;
-import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteIngresosPosServiceImpl;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+import co.edu.unicauca.reportesplusAPI.dtos.reporteIngresosPos.ReporteIngresosPosDTORes;
+import co.edu.unicauca.reportesplusAPI.services.reporteGastosPos.ReporteIngresosPosService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/posgrados/reporte/ingresos")
@@ -36,7 +32,7 @@ public class ReporteIngresosPosgradosController {
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
             @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin,
             @RequestParam("codigo") String codigo) throws SQLException, JsonProcessingException {
-        return  vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
+        return vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
     }
 
     @GetMapping
@@ -75,6 +71,6 @@ public class ReporteIngresosPosgradosController {
         System.out.println("Fecha de inicio del mes: " + formatoFecha.format(fechaInicio));
         System.out.println("Fecha de final de mes: " + formatoFecha.format(fechaFin));
 
-        return  vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
+        return vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
     }
 }
