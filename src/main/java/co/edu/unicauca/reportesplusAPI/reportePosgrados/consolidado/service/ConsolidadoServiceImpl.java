@@ -6,8 +6,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.common.DAOCodigosPosgrados.CodigosDAO;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.common.DAOCodigosPosgrados.CodigosEntity;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.codigos.DAO.CodigosDAO;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.codigos.DAO.CodigosEntity;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.DTOs.ConsolidadoDTORes;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs.GastosDTORes;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.service.GastosService;

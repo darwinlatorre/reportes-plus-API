@@ -1,4 +1,4 @@
-package co.edu.unicauca.reportesplusAPI.reportePosgrados.common.DAOCodigosPosgrados;
+package co.edu.unicauca.reportesplusAPI.reportePosgrados.codigos.DAO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
