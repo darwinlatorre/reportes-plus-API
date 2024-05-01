@@ -1,77 +1,50 @@
 package co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.service;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.codigos.DAO.CodigosDAO;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.codigos.DAO.CodigosEntity;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastoEntity;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastosDAO;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastosEntity;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs.GastoDTORes;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs.GastosDTORes;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.mapper.GastosMapper;
 
 @Service
 public class GastosServiceImpl implements GastosService {
 
-    @Autowired
-    private GastosDAO DAO;
-    @Autowired
-    private GastosMapper gastoMapper;
-    @Autowired
-    private CodigosDAO DAOCodigosPosgrados;
+        @Autowired
+        private GastosDAO gastosDAO;
+        @Autowired
+        private GastosMapper gastosMapper;
+        @Autowired
+        private CodigosDAO DAOCodigosPosgrados;
 
-    @Override
-    public List<GastoDTORes> mapearGastos() throws SQLException {// Usar este metodo para obtener la lista de gastos
-                                                                 // mapeados a DTO
-        List<GastosEntity> gastosSinMapear = DAO.findAllExpenseReport();
+        public GastosDTORes generarReporte(Date fechaInicio, Date fechaFin, String codigo)
+                        throws SQLException {
 
-        return gastosSinMapear
-                .stream().map(gastoEntity -> gastoMapper.gastoEntityToGastoDTO(gastoEntity))
-                .collect(Collectors.toList());
-    }
+                GastosDTORes gastosDTORes = new GastosDTORes();
 
-    @Override
-    public List<GastoDTORes> mapearGastosPorFechas(Date fechaInicio, Date fechaFin, String codigo) throws SQLException {
+                java.sql.Date fechaIncioSQL = new java.sql.Date(fechaInicio.getTime());
+                java.sql.Date fechaFinSQL = new java.sql.Date(fechaFin.getTime());
 
-        List<GastosEntity> gastosSinMapear = DAO.findAllExpenseReport();
-        return gastosSinMapear.stream()
-                .filter(gastoEntity -> {
-                    Date fechaGasto = gastoEntity.getFecha();
-                    String cuentaMovimiento = gastoEntity.getCuenta_movimiento();
-                    String codigoTipo = cuentaMovimiento.substring(cuentaMovimiento.lastIndexOf(".") + 1);
-                    return fechaGasto.before(fechaFin) && fechaGasto.after(fechaInicio) && codigoTipo.equals(codigo);
-                })
-                .map(gastoEntity -> gastoMapper.gastoEntityToGastoDTO(gastoEntity))
-                .collect(Collectors.toList());
+                List<GastoEntity> GastoEntityList = gastosDAO.encontrarReportesPorFechaYCódigo(fechaIncioSQL,
+                                fechaFinSQL, codigo);
+                gastosDTORes.setGastos(gastosMapper.gastoEntityListToGastoDTOResList(GastoEntityList));
 
-    }
+                BigDecimal gastoTotal = gastosDTORes.getGastos().stream()
+                                .map(gasto -> BigDecimal.valueOf(gasto.getValor_definitivo()))
+                                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-    public GastosDTORes generarReporte(Date fechaInicio, Date fechaFin, String codigo)
-            throws SQLException {
+                gastosDTORes.setCodigoPosgrado(DAOCodigosPosgrados.encontrarPorCodigo(codigo).getDescripcion());
+                gastosDTORes.setFechaInicio(fechaInicio);
+                gastosDTORes.setFechaFin(fechaFin);
+                gastosDTORes.setTotal(gastoTotal);
 
-        GastosDTORes reporte = new GastosDTORes();
-        reporte.setFechaInicio(fechaInicio);
-        reporte.setFechaFin(fechaFin);
-        reporte.setCodigoPosgrado(codigo);
-        reporte.setGastos(mapearGastosPorFechas(fechaInicio, fechaFin, codigo));
-        for (CodigosEntity entity : DAOCodigosPosgrados.findAllCodes()) {
-            if (entity.getCodigo().equals(codigo)) {
-                reporte.setNombrePosgrado(entity.getDescripcion());
-            }
+                return gastosDTORes;
         }
-
-        List<GastoDTORes> listaGastos = mapearGastosPorFechas(fechaInicio, fechaFin, codigo);
-        float sumaValoresDefinitivos = (float) listaGastos.stream()
-                .mapToDouble(gasto -> gasto.getValor_definitivo())
-                .sum();
-
-        reporte.setTotal(sumaValoresDefinitivos);
-        return reporte;
-    }
 }

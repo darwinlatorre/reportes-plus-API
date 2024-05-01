@@ -1,12 +1,13 @@
 package co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 public class GastosDTORes {
     private Date fechaInicio;
     private Date fechaFin;
-    private float total;
+    private BigDecimal total;
     private String codigoPosgrado;
     private String nombrePosgrado;
     private List<GastoDTORes> gastos;
@@ -35,11 +36,11 @@ public class GastosDTORes {
         this.fechaFin = fechaFin;
     }
 
-    public float getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 

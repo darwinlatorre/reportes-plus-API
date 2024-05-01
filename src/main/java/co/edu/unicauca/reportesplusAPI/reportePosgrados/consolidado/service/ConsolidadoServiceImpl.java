@@ -1,5 +1,6 @@
 package co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.service;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -37,11 +38,11 @@ public class ConsolidadoServiceImpl implements ConsolidadoService {
                         codigo);
                 consolidado.setTotal_ingresos(ingresos.getTotal_ingresos());
                 consolidado.setTotal_descuentos(ingresos.getTotal_descuentos());
-                consolidado.setTotal_neto(ingresos.getTotal_ingresos() - ingresos.getTotal_descuentos());
-                consolidado.setContribucion(consolidado.getTotal_neto() * 0.20f);
-                consolidado.setTotal_disponible(consolidado.getTotal_neto() - consolidado.getContribucion());
+                consolidado.setTotal_neto(ingresos.getTotal_ingresos().subtract(ingresos.getTotal_descuentos()));
+                consolidado.setContribucion(consolidado.getTotal_neto().multiply(BigDecimal.valueOf(0.20f)));
+                consolidado.setTotal_disponible(consolidado.getTotal_neto().subtract(consolidado.getContribucion()));
                 consolidado.setGastos_certificados(gastos.getTotal());
-                consolidado.setSaldo(consolidado.getTotal_disponible() - consolidado.getGastos_certificados());
+                consolidado.setSaldo(consolidado.getTotal_disponible().subtract(consolidado.getGastos_certificados()));
                 consolidado.setNombrePosgrado(entity.getDescripcion());
                 consolidado.setCodigoPosgrado(codigo);
                 return consolidado;

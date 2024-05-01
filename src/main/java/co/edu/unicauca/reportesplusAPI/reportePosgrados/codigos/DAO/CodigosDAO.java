@@ -36,4 +36,26 @@ public class CodigosDAO {
         }
         return posgrados;
     }
+
+    public CodigosEntity encontrarPorCodigo(String codigo) throws SQLException {
+        String consultaSQL = "SELECT CODIGO, DESCRIPCION, CODIGO_ALTERNATIVO, ESTADO FROM CODIGOS WHERE CODIGO = ?";
+
+        CodigosEntity posgrado = new CodigosEntity();
+
+        try (PreparedStatement declaracionSQL = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection()
+                .prepareStatement(consultaSQL)) {
+
+            declaracionSQL.setString(1, codigo);
+
+            try (ResultSet resultSet = declaracionSQL.executeQuery()) {
+                resultSet.next();
+                posgrado.setCodigo(resultSet.getString("CODIGO"));
+                posgrado.setDescripcion(resultSet.getString("DESCRIPCION"));
+                posgrado.setCodigo_alternativo(resultSet.getString("CODIGO_ALTERNATIVO"));
+                posgrado.setEstado(resultSet.getString("ESTADO"));
+            }
+        }
+        return posgrado;
+    }
+
 }

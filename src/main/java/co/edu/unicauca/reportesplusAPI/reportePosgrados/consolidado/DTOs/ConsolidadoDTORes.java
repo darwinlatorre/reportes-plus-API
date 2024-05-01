@@ -1,5 +1,7 @@
 package co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.DTOs;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,67 +12,67 @@ import lombok.NoArgsConstructor;
 public class ConsolidadoDTORes {
     private String codigoPosgrado;
     private String nombrePosgrado;
-    private float total_ingresos;
-    private float total_descuentos;
-    private float total_neto;
-    private float contribucion;
-    private float total_disponible;
-    private float gastos_certificados;
-    private float saldo;
+    private BigDecimal total_ingresos;
+    private BigDecimal total_descuentos;
+    private BigDecimal total_neto;
+    private BigDecimal contribucion;
+    private BigDecimal total_disponible;
+    private BigDecimal gastos_certificados;
+    private BigDecimal saldo;
 
-    public float getTotal_ingresos() {
+    public BigDecimal getTotal_ingresos() {
         return total_ingresos;
     }
 
-    public void setTotal_ingresos(float total_ingresos) {
+    public void setTotal_ingresos(BigDecimal total_ingresos) {
         this.total_ingresos = total_ingresos;
     }
 
-    public float getTotal_descuentos() {
+    public BigDecimal getTotal_descuentos() {
         return total_descuentos;
     }
 
-    public void setTotal_descuentos(float total_descuentos) {
+    public void setTotal_descuentos(BigDecimal total_descuentos) {
         this.total_descuentos = total_descuentos;
     }
 
-    public float getTotal_neto() {
+    public BigDecimal getTotal_neto() {
         return total_neto;
     }
 
-    public void setTotal_neto(float total_neto) {
+    public void setTotal_neto(BigDecimal total_neto) {
         this.total_neto = total_neto;
     }
 
-    public float getContribucion() {
+    public BigDecimal getContribucion() {
         return contribucion;
     }
 
-    public void setContribucion(float contribucion) {
+    public void setContribucion(BigDecimal contribucion) {
         this.contribucion = contribucion;
     }
 
-    public float getTotal_disponible() {
+    public BigDecimal getTotal_disponible() {
         return total_disponible;
     }
 
-    public void setTotal_disponible(float total_disponible) {
+    public void setTotal_disponible(BigDecimal total_disponible) {
         this.total_disponible = total_disponible;
     }
 
-    public float getGastos_certificados() {
+    public BigDecimal getGastos_certificados() {
         return gastos_certificados;
     }
 
-    public void setGastos_certificados(float gastos_certificados) {
+    public void setGastos_certificados(BigDecimal gastos_certificados) {
         this.gastos_certificados = gastos_certificados;
     }
 
-    public float getSaldo() {
+    public BigDecimal getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(float saldo) {
+    public void setSaldo(BigDecimal saldo) {
         this.saldo = saldo;
     }
 

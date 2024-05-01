@@ -1,10 +1,13 @@
 package co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.mapper;
 
+import java.util.List;
+
+import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastosEntity;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastoEntity;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs.GastoDTORes;
 
 @Mapper(componentModel = "spring")
@@ -25,5 +28,9 @@ public interface GastosMapper {
             @Mapping(target = "estado", source = "estado")
     })
 
-    GastoDTORes gastoEntityToGastoDTO(GastosEntity gastoEntity);
+    GastoDTORes gastoEntityToGastoDTO(GastoEntity gastoEntity);
+
+    @IterableMapping(elementTargetType = GastoDTORes.class)
+    List<GastoDTORes> gastoEntityListToGastoDTOResList(List<GastoEntity> gastoEntityList);
+
 }

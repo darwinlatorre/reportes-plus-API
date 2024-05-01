@@ -23,18 +23,19 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class GastosController {
 
     @Autowired
-    private GastosService vReporteService;
+    private GastosService gastosService;
 
     @GetMapping("/fecha")
-    public GastosDTORes encontrarReportePorFecha(
+    public GastosDTORes obtenerReportePorFecha(
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
             @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin,
             @RequestParam("codigo") String codigo) throws SQLException {
-        return vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
+
+        return gastosService.generarReporte(fechaInicio, fechaFin, codigo);
     }
 
     @GetMapping
-    public GastosDTORes encontrarReportePorMes(
+    public GastosDTORes obtenenerReportePorMes(
             @RequestParam("mes") String mes,
             @RequestParam("anio") Integer anio,
             @RequestParam("codigo") String codigo) throws SQLException, ParseException {
@@ -69,6 +70,6 @@ public class GastosController {
         System.out.println("Fecha de inicio del mes: " + formatoFecha.format(fechaInicio));
         System.out.println("Fecha de final de mes: " + formatoFecha.format(fechaFin));
 
-        return vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
+        return gastosService.generarReporte(fechaInicio, fechaFin, codigo);
     }
 }

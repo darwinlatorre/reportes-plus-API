@@ -1,5 +1,6 @@
 package co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.service;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -94,8 +95,8 @@ public class IngresosServiceImpl implements IngresosService {
         reporte.setCodigoPosgrado(codigo);
         reporte.setIngresos(ingresos);
         reporte.setDescuentos(descuentos);
-        reporte.setTotal_ingresos(sumaIngreso);
-        reporte.setTotal_descuentos(sumaDescuentos);
+        reporte.setTotal_ingresos(BigDecimal.valueOf(sumaIngreso));
+        reporte.setTotal_descuentos(BigDecimal.valueOf(sumaDescuentos));
 
         for (CodigosEntity entity : DAOCodigosPosgrados.findAllCodes()) {
             if (entity.getCodigo().equals(codigo)) {

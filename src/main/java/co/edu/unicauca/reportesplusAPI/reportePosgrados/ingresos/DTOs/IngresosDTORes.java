@@ -1,5 +1,6 @@
 package co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.DTOs;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -8,8 +9,8 @@ public class IngresosDTORes {
     private Date fechaFin;
     private String codigoPosgrado;
     private String nombrePosgrado;
-    private float total_ingresos;
-    private float total_descuentos;
+    private BigDecimal total_ingresos;
+    private BigDecimal total_descuentos;
     private List<IngresoDTORes> ingresos;
 
     private List<IngresoDTORes> descuentos;
@@ -30,19 +31,19 @@ public class IngresosDTORes {
         this.fechaFin = fechaFin;
     }
 
-    public float getTotal_ingresos() {
+    public BigDecimal getTotal_ingresos() {
         return total_ingresos;
     }
 
-    public void setTotal_ingresos(float total_ingresos) {
+    public void setTotal_ingresos(BigDecimal total_ingresos) {
         this.total_ingresos = total_ingresos;
     }
 
-    public float getTotal_descuentos() {
+    public BigDecimal getTotal_descuentos() {
         return total_descuentos;
     }
 
-    public void setTotal_descuentos(float total_descuentos) {
+    public void setTotal_descuentos(BigDecimal total_descuentos) {
         this.total_descuentos = total_descuentos;
     }
 
