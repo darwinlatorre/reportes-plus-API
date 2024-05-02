@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs.GastosDTORes;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs.ResumenGastosDTORes;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.service.GastosService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -26,7 +26,7 @@ public class GastosController {
     private GastosService gastosService;
 
     @GetMapping("/fecha")
-    public GastosDTORes obtenerReportePorFecha(
+    public ResumenGastosDTORes obtenerReportePorFecha(
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
             @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin,
             @RequestParam("codigo") String codigo) throws SQLException {
@@ -35,7 +35,7 @@ public class GastosController {
     }
 
     @GetMapping
-    public GastosDTORes obtenenerReportePorMes(
+    public ResumenGastosDTORes obtenenerReportePorMes(
             @RequestParam("mes") String mes,
             @RequestParam("anio") Integer anio,
             @RequestParam("codigo") String codigo) throws SQLException, ParseException {
@@ -64,11 +64,6 @@ public class GastosController {
 
         // Obtener la fecha de final de mes (primer día del siguiente mes)
         Date fechaFin = calendarioFin.getTime();
-
-        // Mostrar las fechas generadas
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println("Fecha de inicio del mes: " + formatoFecha.format(fechaInicio));
-        System.out.println("Fecha de final de mes: " + formatoFecha.format(fechaFin));
 
         return gastosService.generarReporte(fechaInicio, fechaFin, codigo);
     }

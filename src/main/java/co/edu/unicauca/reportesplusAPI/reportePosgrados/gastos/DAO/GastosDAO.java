@@ -1,37 +1,34 @@
 package co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import javax.sql.DataSource;
+
 import org.springframework.stereotype.Component;
 
 @Component
 public class GastosDAO {
+	private final DataSource dataSource;
 
-	private final JdbcTemplate jdbcTemplate;
-
-	public GastosDAO(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
+	public GastosDAO(DataSource dataSource) {
+		this.dataSource = dataSource;
 	}
 
-	public List<GastoEntity> encontrarReportesPorFechaYCódigo(Date fechaInicio, Date fechaFin, String codigo)
+	public List<GastoEntity> encontrarReportesPorFechaYCodigo(Date fechaInicio, Date fechaFin, String codigo)
 			throws SQLException {
 
 		String consultaSQL = "SELECT m.ID, m.MOCDCDTD, m.MOCDCDND, m.MOCDFECH, m.MOCDCUMO, m.MOCDOBSE, m.MOCDVADE, m.MOCDVADE, m.MOCDVADE, m.MOCDVADE, m.MOCDVADE, m.MOCDESTA FROM MOCD m WHERE m.MOCDFECH BETWEEN ? AND ? AND SUBSTR(m.MOCDCUMO, INSTR(m.MOCDCUMO, '.', -1) + 1) = ?";
 
 		List<GastoEntity> GastoEntityList = new ArrayList<>();
 
-		try (PreparedStatement declaracionSQL = Objects.requireNonNull(jdbcTemplate.getDataSource()).getConnection()
-				.prepareStatement(consultaSQL)) {
-
-			System.out.println(fechaInicio);
-			System.out.println(fechaFin);
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement declaracionSQL = connection.prepareStatement(consultaSQL)) {
 
 			declaracionSQL.setDate(1, fechaInicio);
 			declaracionSQL.setDate(2, fechaFin);
@@ -57,9 +54,6 @@ public class GastosDAO {
 
 				GastoEntityList.add(gastoEntity);
 			}
-
-			resultSet.close();
-			declaracionSQL.close();
 		}
 		return GastoEntityList;
 	}

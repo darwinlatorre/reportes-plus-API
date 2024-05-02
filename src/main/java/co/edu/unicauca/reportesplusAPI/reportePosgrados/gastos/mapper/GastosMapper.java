@@ -1,5 +1,7 @@
 package co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.mapper;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import org.mapstruct.IterableMapping;
@@ -9,6 +11,7 @@ import org.mapstruct.Mappings;
 
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastoEntity;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs.GastoDTORes;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs.ResumenGastosDTORes;
 
 @Mapper(componentModel = "spring")
 public interface GastosMapper {
@@ -27,10 +30,22 @@ public interface GastosMapper {
             @Mapping(target = "saldo", source = "saldo"),
             @Mapping(target = "estado", source = "estado")
     })
-
     GastoDTORes gastoEntityToGastoDTO(GastoEntity gastoEntity);
 
     @IterableMapping(elementTargetType = GastoDTORes.class)
     List<GastoDTORes> gastoEntityListToGastoDTOResList(List<GastoEntity> gastoEntityList);
+
+    @Mappings({
+            @Mapping(source = "listaGastos", target = "gastos"),
+            @Mapping(source = "codigoEncontrado", target = "codigoPosgrado"),
+            @Mapping(source = "fechaInicio", target = "fechaInicio"),
+            @Mapping(source = "fechaFin", target = "fechaFin"),
+            @Mapping(source = "gastoTotal", target = "total"),
+            @Mapping(source = "nombrePosgrado", target = "nombrePosgrado")
+    })
+    ResumenGastosDTORes convertirAGastosDTORes(List<GastoDTORes> listaGastos, String codigoEncontrado,
+            Date fechaInicio,
+            Date fechaFin,
+            BigDecimal gastoTotal, String nombrePosgrado);
 
 }

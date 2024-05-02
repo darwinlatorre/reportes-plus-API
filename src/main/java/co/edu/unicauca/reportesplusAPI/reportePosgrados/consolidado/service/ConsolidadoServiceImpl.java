@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.codigos.DAO.CodigosDAO;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.DTOs.ConsolidadoDTORes;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs.GastosDTORes;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs.ResumenGastosDTORes;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.service.GastosService;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.DTOs.IngresosDTORes;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.service.IngresosService;
@@ -31,19 +31,22 @@ public class ConsolidadoServiceImpl implements ConsolidadoService {
         String codigoEncontrado = codigosDAO.encontrarPorCodigo(codigo).getDescripcion();
         if (codigoEncontrado != null) {
             ConsolidadoDTORes consolidado = new ConsolidadoDTORes();
-            GastosDTORes gastos = gastosService.generarReporte(fechaInicio, fechaFin,
+            ResumenGastosDTORes gastos = gastosService.generarReporte(fechaInicio, fechaFin,
                     codigo);
             IngresosDTORes ingresos = ingresosService.generarReporte(fechaInicio, fechaFin,
                     codigo);
             consolidado.setTotal_ingresos(ingresos.getTotal_ingresos());
             consolidado.setTotal_descuentos(ingresos.getTotal_descuentos());
-            consolidado.setTotal_neto(ingresos.getTotal_ingresos().subtract(ingresos.getTotal_descuentos()));
+            consolidado.setTotal_neto(
+                    ingresos.getTotal_ingresos().subtract(ingresos.getTotal_descuentos()));
             consolidado.setContribucion(consolidado.getTotal_neto().multiply(BigDecimal.valueOf(0.20f)));
             consolidado
-                    .setTotal_disponible(consolidado.getTotal_neto().subtract(consolidado.getContribucion()));
+                    .setTotal_disponible(consolidado.getTotal_neto()
+                            .subtract(consolidado.getContribucion()));
             consolidado.setGastos_certificados(gastos.getTotal());
             consolidado
-                    .setSaldo(consolidado.getTotal_disponible().subtract(consolidado.getGastos_certificados()));
+                    .setSaldo(consolidado.getTotal_disponible()
+                            .subtract(consolidado.getGastos_certificados()));
             consolidado.setNombrePosgrado(codigoEncontrado);
             consolidado.setCodigoPosgrado(codigo);
             return consolidado;
