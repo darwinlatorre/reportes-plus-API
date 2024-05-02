@@ -96,7 +96,7 @@ public class IngresosServiceImpl implements IngresosService {
         reporte.setDescuentos(descuentos);
         reporte.setTotal_ingresos(BigDecimal.valueOf(sumaIngreso));
         reporte.setTotal_descuentos(BigDecimal.valueOf(sumaDescuentos));
-        reporte.setNombrePosgrado(codigosDAO.encontrarPorCodigo(codigo).getDescripcion());
+        reporte.setNombrePosgrado(codigosDAO.encontrarPosgradoPorCodigo(codigo).getDescripcion());
 
         return reporte;
     }

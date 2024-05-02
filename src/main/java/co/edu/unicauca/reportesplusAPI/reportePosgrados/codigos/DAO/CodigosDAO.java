@@ -16,7 +16,7 @@ public class CodigosDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public CodigosEntity encontrarPorCodigo(String codigo) throws SQLException {
+    public CodigosEntity encontrarPosgradoPorCodigo(String codigo) throws SQLException {
         String consultaSQL = "SELECT CODIGO, DESCRIPCION, CODIGO_ALTERNATIVO, ESTADO FROM CODIGOS WHERE CODIGO = ?";
 
         CodigosEntity posgrado = new CodigosEntity();

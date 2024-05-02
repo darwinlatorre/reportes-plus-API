@@ -38,11 +38,11 @@ public class GastosServiceImpl implements GastosService {
 				.map(gasto -> BigDecimal.valueOf(gasto.getValor_definitivo()))
 				.reduce(BigDecimal.ZERO, BigDecimal::add);
 
-		String codigoEncontrado = codigosDAO.encontrarPorCodigo(codigo).getDescripcion();
+		String posgradoEncontrado = codigosDAO.encontrarPosgradoPorCodigo(codigo).getDescripcion();
 
-		ResumenGastosDTORes resumenGastosDTORes = gastoMapper.convertirAGastosDTORes(listaGastos, codigoEncontrado,
+		ResumenGastosDTORes resumenGastosDTORes = gastoMapper.convertirAGastosDTORes(listaGastos, codigo,
 				fechaInicio, fechaFin,
-				gastoTotal, null);
+				gastoTotal, posgradoEncontrado);
 
 		return resumenGastosDTORes;
 	}
