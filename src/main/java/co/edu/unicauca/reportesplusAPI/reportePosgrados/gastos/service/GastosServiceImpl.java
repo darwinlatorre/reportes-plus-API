@@ -22,7 +22,7 @@ public class GastosServiceImpl implements GastosService {
         @Autowired
         private GastosMapper gastosMapper;
         @Autowired
-        private CodigosDAO DAOCodigosPosgrados;
+        private CodigosDAO codigosDAO;
 
         public GastosDTORes generarReporte(Date fechaInicio, Date fechaFin, String codigo)
                         throws SQLException {
@@ -40,7 +40,7 @@ public class GastosServiceImpl implements GastosService {
                                 .map(gasto -> BigDecimal.valueOf(gasto.getValor_definitivo()))
                                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-                gastosDTORes.setCodigoPosgrado(DAOCodigosPosgrados.encontrarPorCodigo(codigo).getDescripcion());
+                gastosDTORes.setCodigoPosgrado(codigosDAO.encontrarPorCodigo(codigo).getDescripcion());
                 gastosDTORes.setFechaInicio(fechaInicio);
                 gastosDTORes.setFechaFin(fechaFin);
                 gastosDTORes.setTotal(gastoTotal);

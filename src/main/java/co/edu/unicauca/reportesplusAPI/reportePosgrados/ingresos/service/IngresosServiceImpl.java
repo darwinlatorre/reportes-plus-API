@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.codigos.DAO.CodigosDAO;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.codigos.DAO.CodigosEntity;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.DAO.IngresosDAO;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.DAO.IngresosEntity;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.DTOs.IngresoDTORes;
@@ -26,7 +25,7 @@ public class IngresosServiceImpl implements IngresosService {
     @Autowired(required = true)
     private IngresosMapper ingresoMapper;
     @Autowired
-    private CodigosDAO DAOCodigosPosgrados;
+    private CodigosDAO codigosDAO;
 
     @Override
     public List<IngresoDTORes> mapearIngresos() throws SQLException {
@@ -97,12 +96,7 @@ public class IngresosServiceImpl implements IngresosService {
         reporte.setDescuentos(descuentos);
         reporte.setTotal_ingresos(BigDecimal.valueOf(sumaIngreso));
         reporte.setTotal_descuentos(BigDecimal.valueOf(sumaDescuentos));
-
-        for (CodigosEntity entity : DAOCodigosPosgrados.findAllCodes()) {
-            if (entity.getCodigo().equals(codigo)) {
-                reporte.setNombrePosgrado(entity.getDescripcion());
-            }
-        }
+        reporte.setNombrePosgrado(codigosDAO.encontrarPorCodigo(codigo).getDescripcion());
 
         return reporte;
     }
