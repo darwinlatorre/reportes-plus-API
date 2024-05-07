@@ -1,25 +1,21 @@
 package co.edu.unicauca.reportesplusAPI.auth.service;
-import co.edu.unicauca.reportesplusAPI.auth.DAO.UsuarioDao;
-import co.edu.unicauca.reportesplusAPI.auth.DAO.UsuarioEntity;
-import co.edu.unicauca.reportesplusAPI.auth.DTOs.UsuarioDTORes;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.DAO.IngresosDAO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-
 import java.sql.SQLException;
-import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import co.edu.unicauca.reportesplusAPI.auth.DAO.UsuarioDao;
+import co.edu.unicauca.reportesplusAPI.auth.DAO.UsuarioEntity;
+import co.edu.unicauca.reportesplusAPI.auth.DTOs.UsuarioDTORes;
 
 @Service
 public class AuthServiceImpl implements AuthService {
     @Autowired
     private UsuarioDao DAO;
-
 
     @Override
     public UsuarioDTORes encontrarUsuario(String Usuario, String Contrasenia) throws SQLException {
@@ -33,7 +29,8 @@ public class AuthServiceImpl implements AuthService {
 
                 for (byte b : hash) {
                     String hex = Integer.toHexString(0xff & b);
-                    if (hex.length() == 1) hexString.append('0');
+                    if (hex.length() == 1)
+                        hexString.append('0');
                     hexString.append(hex);
                 }
                 String contraseniaCifrada = hexString.toString();

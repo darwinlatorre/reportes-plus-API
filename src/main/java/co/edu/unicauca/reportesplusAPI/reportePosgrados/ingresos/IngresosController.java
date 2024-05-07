@@ -66,11 +66,6 @@ public class IngresosController {
         // Obtener la fecha de final de mes (primer día del siguiente mes)
         Date fechaFin = calendarioFin.getTime();
 
-        // Mostrar las fechas generadas
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println("Fecha de inicio del mes: " + formatoFecha.format(fechaInicio));
-        System.out.println("Fecha de final de mes: " + formatoFecha.format(fechaFin));
-
         return vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
     }
 }

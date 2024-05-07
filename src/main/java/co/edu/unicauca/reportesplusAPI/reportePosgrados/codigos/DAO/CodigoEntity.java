@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CodigosEntity {
+public class CodigoEntity {
     private String codigo;
     private String descripcion;
     private String codigo_alternativo;
