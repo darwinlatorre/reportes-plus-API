@@ -40,8 +40,13 @@ public class GastosServiceImpl implements GastosService {
 
 		String posgradoEncontrado = codigosDAO.encontrarPosgradoPorCodigo(codigo).getDescripcion();
 
-		ResumenGastosDTORes resumenGastosDTORes = new ResumenGastosDTORes(fechaInicio, fechaInicio, gastoTotal, codigo,
-				posgradoEncontrado, listaGastos);
+		ResumenGastosDTORes resumenGastosDTORes = new ResumenGastosDTORes();
+		resumenGastosDTORes.setFechaInicio(fechaInicio);
+		resumenGastosDTORes.setFechaFin(fechaFin);
+		resumenGastosDTORes.setGastoTotal(gastoTotal);
+		resumenGastosDTORes.setListaGastos(listaGastos);
+		resumenGastosDTORes.setCodigo(codigo);
+		resumenGastosDTORes.setNombrePosgrado(posgradoEncontrado);
 
 		return resumenGastosDTORes;
 	}

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,10 +24,20 @@ public class ReporteMacroServiceImpl implements ReporteMacroService {
     public ReporteMacroDTORes generarReporteMacro(Date fechaInicio, Date fechaFin) throws SQLException {
         List<CodigoEntity> codigos = codigosDAO.encontrarTodosLosCodigos();
         ReporteMacroDTORes reporte = new ReporteMacroDTORes();
-        for (CodigoEntity codigo : codigos) {
-            ConsolidadoDTORes consolidado = consolidadoService.generarConsolidado(fechaInicio, fechaFin,
-                    codigo.getCodigo());
-            reporte.getConsolidados().add(consolidado);
+
+        reporte.setConsolidados(new ArrayList<>());
+        reporte.setFechaInicio(fechaInicio);
+        reporte.setFechaFin(fechaFin);
+
+        //filtrar solo los codigos de posgrados
+        for(CodigoEntity codigo:codigos)
+        {
+            if(codigo.getCodigo().startsWith("14")) {
+                ConsolidadoDTORes consolidado = consolidadoService.generarConsolidado(fechaInicio, fechaFin,
+                        codigo.getCodigo());
+                reporte.getConsolidados().add(consolidado);
+                System.out.println(consolidado.getNombrePosgrado()+" "+consolidado.getSaldo());
+            }
         }
         return reporte;
     }
