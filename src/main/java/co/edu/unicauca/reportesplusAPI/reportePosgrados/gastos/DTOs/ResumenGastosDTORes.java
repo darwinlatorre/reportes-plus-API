@@ -4,11 +4,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @Builder
 @NoArgsConstructor
+@Component
 public class ResumenGastosDTORes {
     private Date fechaInicio;
     private Date fechaFin;

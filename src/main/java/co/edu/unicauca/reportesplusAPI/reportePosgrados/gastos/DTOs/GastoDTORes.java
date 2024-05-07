@@ -3,6 +3,8 @@ package co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -10,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Component
 public class GastoDTORes {
     private Integer ID;
     private String tipo_documento;

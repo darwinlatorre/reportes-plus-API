@@ -2,6 +2,8 @@ package co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.DTOs;
 
 import java.math.BigDecimal;
 
+import org.springframework.stereotype.Component;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Component
 public class ConsolidadoDTORes {
     private String codigoPosgrado;
     private String nombrePosgrado;

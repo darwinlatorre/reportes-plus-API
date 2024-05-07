@@ -3,12 +3,15 @@ package co.edu.unicauca.reportesplusAPI.reportePosgrados.reporteMacro.DTOs;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.DTOs.ConsolidadoDTORes;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Component
 public class ReporteMacroDTORes {
     private Date fechaInicio;
     private Date fechaFin;
