@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.codigos.DAO.CodigosDAO;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastoDAO;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastoEntity;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastosDAO;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs.GastoDTORes;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DTOs.ResumenGastosDTORes;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.mapper.GastosMapper;
@@ -20,7 +20,7 @@ import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.mapper.GastosMapp
 public class GastosServiceImpl implements GastosService {
 
 	@Autowired
-	private GastosDAO gastosDAO;
+	private GastoDAO gastosDAO;
 	@Autowired
 	private GastosMapper gastoMapper;
 	@Autowired
