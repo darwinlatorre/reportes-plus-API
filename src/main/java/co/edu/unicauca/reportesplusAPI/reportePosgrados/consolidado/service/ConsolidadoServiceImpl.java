@@ -43,7 +43,7 @@ public class ConsolidadoServiceImpl implements ConsolidadoService {
                         consolidado
                                         .setTotal_disponible(consolidado.getTotal_neto()
                                                         .subtract(consolidado.getContribucion()));
-                        consolidado.setGastos_certificados(gastos.getTotal());
+                        consolidado.setGastos_certificados(gastos.getGastoTotal());
                         consolidado
                                         .setSaldo(consolidado.getTotal_disponible()
                                                         .subtract(consolidado.getGastos_certificados()));

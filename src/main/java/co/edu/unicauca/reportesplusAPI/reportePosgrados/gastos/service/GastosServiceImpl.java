@@ -32,17 +32,16 @@ public class GastosServiceImpl implements GastosService {
 		List<GastoEntity> GastoEntityList = gastosDAO.encontrarReportesPorFechaYCodigo(ajustarFecha(fechaInicio),
 				ajustarFecha(fechaFin), codigo);
 
-		List<GastoDTORes> listaGastos = gastoMapper.gastoEntityListToGastoDTOResList(GastoEntityList);
+		List<GastoDTORes> listaGastos = gastoMapper.gastoEntityListAGastoDTOResList(GastoEntityList);
 
 		BigDecimal gastoTotal = listaGastos.stream()
-				.map(gasto -> BigDecimal.valueOf(gasto.getValor_definitivo()))
+				.map(gasto -> gasto.getValor_definitivo())
 				.reduce(BigDecimal.ZERO, BigDecimal::add);
 
 		String posgradoEncontrado = codigosDAO.encontrarPosgradoPorCodigo(codigo).getDescripcion();
 
-		ResumenGastosDTORes resumenGastosDTORes = gastoMapper.convertirAGastosDTORes(listaGastos, codigo,
-				fechaInicio, fechaFin,
-				gastoTotal, posgradoEncontrado);
+		ResumenGastosDTORes resumenGastosDTORes = new ResumenGastosDTORes(fechaInicio, fechaInicio, gastoTotal, codigo,
+				posgradoEncontrado, listaGastos);
 
 		return resumenGastosDTORes;
 	}
