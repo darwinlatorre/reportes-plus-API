@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c974dc8-1fcb-4dda-b95f-5b8dfa1f694d" name="Changes" comment="Implementación del consolidado (DTO, Service, Endpoint)">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="aa4032ed-4d91-4c65-b760-89a731d4008a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/ReportesPlusApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/ReportesPlusApiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/controllers/ReporteConsolidadoPosgradosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/controllers/ReporteConsolidadoPosgradosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/dtos/reporteConsolidado/ConsolidadoDTORes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/dtos/reporteConsolidado/ConsolidadoDTORes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/dtos/reporteGastosPos/ReportesGastosPosDTORes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/dtos/reporteGastosPos/ReportesGastosPosDTORes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/dtos/reporteIngresosPos/ReporteIngresosPosDTORes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/dtos/reporteIngresosPos/ReporteIngresosPosDTORes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/services/reporteGastosPos/ReporteConsolidadoPosServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/services/reporteGastosPos/ReporteConsolidadoPosServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/services/reporteGastosPos/ReporteGastosPosServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/services/reporteGastosPos/ReporteGastosPosServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/services/reporteGastosPos/ReporteIngresosPosServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/services/reporteGastosPos/ReporteIngresosPosServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/codigos/DAO/CodigosDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/codigos/DAO/CodigosDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,21 +40,17 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 2
-}</component>
-  <component name="ProjectId" id="2fTIa3j3FkLiVeiCYDlvulV7hfw" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2g6v94yJT8bNG5s20qyPV5juROt" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
@@ -70,7 +59,6 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "spring.configuration.checksum": "2133d11d981e8b6e8a1d475e136dff90",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -83,42 +71,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReportesPlusApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="reportes-plus-API" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="co.edu.unicauca.reportesplusAPI.ReportesPlusApiApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3c974dc8-1fcb-4dda-b95f-5b8dfa1f694d" name="Changes" comment="" />
-      <created>1713818703818</created>
+      <changelist id="aa4032ed-4d91-4c65-b760-89a731d4008a" name="Changes" comment="" />
+      <created>1715030689444</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1713818703818</updated>
-      <workItem from="1713818708504" duration="4055000" />
-      <workItem from="1714335325704" duration="6177000" />
+      <updated>1715030689444</updated>
+      <workItem from="1715030693289" duration="2254000" />
     </task>
-    <task id="LOCAL-00001" summary="Implementación del consolidado (DTO, Service, Endpoint)">
-      <option name="closed" value="true" />
-      <created>1713821565092</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1713821565092</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implementación del consolidado (DTO, Service, Endpoint)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementación del consolidado (DTO, Service, Endpoint)" />
   </component>
 </project>
