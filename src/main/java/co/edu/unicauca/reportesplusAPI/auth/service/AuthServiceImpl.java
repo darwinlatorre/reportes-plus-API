@@ -41,7 +41,7 @@ public class AuthServiceImpl implements AuthService {
                     UsuarioDTORes usuarioDTO = new UsuarioDTORes();
                     usuarioDTO.setCodigo(userSimca.getCodigo());
                     usuarioDTO.setUsuario(userSimca.getUsuario());
-                    usuarioDTO.setClave(userSimca.getClave());
+                    usuarioDTO.setClave(contraseniaCifrada);
                     usuarioDTO.setNombre(userSimca.getNombre());
                     usuarioDTO.setCorreo(userSimca.getCorreo());
                     return usuarioDTO;
