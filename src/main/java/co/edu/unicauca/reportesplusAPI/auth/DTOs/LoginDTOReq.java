@@ -1,8 +1,5 @@
 package co.edu.unicauca.reportesplusAPI.auth.DTOs;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class LoginDTOReq {
 
     private String usuario;
@@ -23,6 +20,5 @@ public class LoginDTOReq {
     public void setClave(String clave) {
         this.clave = clave;
     }
-
 
 }
