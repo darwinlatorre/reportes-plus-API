@@ -10,7 +10,6 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @Builder
-@NoArgsConstructor
 @Component
 public class ResumenGastosDTORes {
     private Date fechaInicio;
@@ -19,6 +18,8 @@ public class ResumenGastosDTORes {
     private String codigo;
     private String nombrePosgrado;
     private List<GastoDTORes> listaGastos;
+
+    public ResumenGastosDTORes(){}
 
     public ResumenGastosDTORes(Date fechaInicio, Date fechaFin, BigDecimal gastoTotal, String codigo,
             String nombrePosgrado, List<GastoDTORes> listaGastos) {
