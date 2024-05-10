@@ -8,6 +8,8 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,15 +30,22 @@ public class IngresosController {
     private IngresosService vReporteService;
 
     @GetMapping("/fecha")
-    public IngresosDTORes encontrarReportePorFecha(
+    public ResponseEntity<IngresosDTORes> encontrarReportePorFecha(
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
             @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin,
             @RequestParam("codigo") String codigo) throws SQLException, JsonProcessingException {
-        return vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
+
+        IngresosDTORes vReporte = vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
+
+        if (vReporte != null) {
+            return ResponseEntity.ok(vReporte);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @GetMapping
-    public IngresosDTORes encontrarReportePorMes(
+    public ResponseEntity<IngresosDTORes> encontrarReportePorMes(
             @RequestParam("mes") String mes,
             @RequestParam("anio") Integer anio,
             @RequestParam("codigo") String codigo) throws SQLException, ParseException {
@@ -65,7 +74,12 @@ public class IngresosController {
 
         // Obtener la fecha de final de mes (primer día del siguiente mes)
         Date fechaFin = calendarioFin.getTime();
+        IngresosDTORes vReporte = vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
 
-        return vReporteService.generarReporte(fechaInicio, fechaFin, codigo);
+        if (vReporte!= null) {
+            return ResponseEntity.ok(vReporte);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 }
