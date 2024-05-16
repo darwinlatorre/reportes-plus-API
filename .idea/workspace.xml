@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="787e1c8d-b81b-408b-8355-f5d662b417ee" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/gastos/GastosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/gastos/GastosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/ingresos/IngresosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/ingresos/IngresosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/ingresos/DAO/IngresosDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/ingresos/DAO/IngresosDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/ingresos/service/IngresosServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/ingresos/service/IngresosServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/reporteMacro/ReporteMacroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/reporteMacro/ReporteMacroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/reporteMacro/service/ReporteMacroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/reporteMacro/service/ReporteMacroService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/reporteMacro/service/ReporteMacroServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/reporteMacro/service/ReporteMacroServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +64,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.ReportesPlusApiApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "dev",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "F:/Disco viejo/Proyectos/reportes-plus-API",
     "node.js.detected.package.eslint": "true",
@@ -66,6 +72,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "spring.configuration.checksum": "2133d11d981e8b6e8a1d475e136dff90",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -96,6 +103,7 @@
       <updated>1715110325856</updated>
       <workItem from="1715110329861" duration="1742000" />
       <workItem from="1715322775238" duration="1046000" />
+      <workItem from="1715822388962" duration="5021000" />
     </task>
     <servers />
   </component>

@@ -30,16 +30,18 @@ public class ReporteMacroController {
     @GetMapping("/fecha")
     public ResponseEntity<ReporteMacroDTORes> generarReporte(
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
-            @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin)
+            @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin,
+            @RequestParam("codigo") String codigo)
             throws SQLException {
-        ReporteMacroDTORes reporte = reporteMacroService.generarReporteMacro(fechaInicio, fechaFin);
+        ReporteMacroDTORes reporte = reporteMacroService.generarReporteMacro(fechaInicio, fechaFin, codigo);
         return new ResponseEntity<>(reporte, HttpStatus.OK);
     }
 
     @GetMapping
     public ResponseEntity<ReporteMacroDTORes> obtenenerReportePorMes(
             @RequestParam("mes") String mes,
-            @RequestParam("anio") Integer anio) throws SQLException, ParseException {
+            @RequestParam("anio") Integer anio,
+            @RequestParam("codigo") String codigo) throws SQLException, ParseException {
 
         // Crear un formato para el nombre del mes
         SimpleDateFormat formatoMes = new SimpleDateFormat("MMMM");
@@ -66,7 +68,7 @@ public class ReporteMacroController {
         // Obtener la fecha de final de mes (primer día del siguiente mes)
         Date fechaFin = calendarioFin.getTime();
 
-        ReporteMacroDTORes reporte = reporteMacroService.generarReporteMacro(fechaInicio, fechaFin);
+        ReporteMacroDTORes reporte = reporteMacroService.generarReporteMacro(fechaInicio, fechaFin, codigo);
         return new ResponseEntity<>(reporte, HttpStatus.OK);
     }
 }

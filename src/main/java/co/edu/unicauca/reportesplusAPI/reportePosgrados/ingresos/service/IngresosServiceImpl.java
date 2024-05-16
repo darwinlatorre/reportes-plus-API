@@ -53,7 +53,7 @@ public class IngresosServiceImpl implements IngresosService {
             if (fechaGasto.before(fechaFin) && fechaGasto.after(fechaInicio) && codigoTipo.equals(codigo)) {
                 IngresoDTORes ingresoDTO = ingresoMapper.ingresoEntityToIngresoDTO(ingresosEntity);
                 double valorEjecutado = ingresosEntity.getValor_ejecutado().doubleValue(); // Convertir a double
-                if (valorEjecutado < 0) {
+                if (ingresoDTO.getObservacion().contains("DESCUENTO") || ingresoDTO.getObservacion().contains("DESCUENTOS")) {
                     listaDescuentos.add(ingresoDTO);
                 } else {
                     listaIngresosPositivos.add(ingresoDTO);

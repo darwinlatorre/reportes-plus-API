@@ -6,5 +6,5 @@ import java.sql.SQLException;
 import java.util.Date;
 
 public interface ReporteMacroService {
-    public ReporteMacroDTORes generarReporteMacro(Date fechaInicio, Date fechaFin) throws SQLException;
+    public ReporteMacroDTORes generarReporteMacro(Date fechaInicio, Date fechaFin, String fragmentoCodigo) throws SQLException;
 }
