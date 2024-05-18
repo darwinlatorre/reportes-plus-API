@@ -4,8 +4,6 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastoEntity;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastoRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

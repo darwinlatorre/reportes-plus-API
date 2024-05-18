@@ -1,19 +1,5 @@
 package co.edu.unicauca.reportesplusAPI.reportePosgrados.reporteMacro.service;
 
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.codigos.DAO.CodigosDAO;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.codigos.DAO.CodigoEntity;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.DTOs.ConsolidadoDTORes;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.service.ConsolidadoService;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastoDAO;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastoEntity;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.DAO.IngresosDAO;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.DAO.IngresosEntity;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.DTOs.IngresoDTORes;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.mapper.IngresosMapper;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.reporteMacro.DTOs.ReporteMacroDTORes;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,12 +7,24 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.codigos.DAO.CodigoEntity;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.codigos.DAO.CodigosDAO;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.DTOs.ConsolidadoDTORes;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastoDAO;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.gastos.DAO.GastoEntity;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.DAO.IngresosDAO;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.DAO.IngresosEntity;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.DTOs.IngresoDTORes;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.mapper.IngresosMapper;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.reporteMacro.DTOs.ReporteMacroDTORes;
+
 @Service
 public class ReporteMacroServiceImpl implements ReporteMacroService {
     @Autowired
     private CodigosDAO codigosDAO;
-    @Autowired
-    private ConsolidadoService consolidadoService;
     @Autowired
     private GastoDAO gastosDAO;
     @Autowired
@@ -35,7 +33,8 @@ public class ReporteMacroServiceImpl implements ReporteMacroService {
     private IngresosMapper ingresoMapper;
 
     @Override
-    public ReporteMacroDTORes generarReporteMacro(Date fechaInicio, Date fechaFin, String fragmentoCodigo) throws SQLException {
+    public ReporteMacroDTORes generarReporteMacro(Date fechaInicio, Date fechaFin, String fragmentoCodigo)
+            throws SQLException {
         List<CodigoEntity> codigos = codigosDAO.encontrarTodosLosCodigos();
         ReporteMacroDTORes reporte = new ReporteMacroDTORes();
 
@@ -43,19 +42,20 @@ public class ReporteMacroServiceImpl implements ReporteMacroService {
         reporte.setFechaInicio(fechaInicio);
         reporte.setFechaFin(fechaFin);
 
-        //filtrar solo los codigos de posgrados
-        for(CodigoEntity codigo:codigos)
-        {
-            if(codigo.getCodigo().startsWith(fragmentoCodigo)) {
-                //Obtener el total de gastos
-                List<GastoEntity> GastoEntityList = gastosDAO.encontrarReportesPorFechaYCodigo(ajustarFecha(fechaInicio),
+        // filtrar solo los codigos de posgrados
+        for (CodigoEntity codigo : codigos) {
+            if (codigo.getCodigo().startsWith(fragmentoCodigo)) {
+                // Obtener el total de gastos
+                List<GastoEntity> GastoEntityList = gastosDAO.encontrarReportesPorFechaYCodigo(
+                        ajustarFecha(fechaInicio),
                         ajustarFecha(fechaFin), codigo.getCodigo());
                 BigDecimal gastoTotal = GastoEntityList.stream()
                         .map(GastoEntity::getValor_definitivo)
                         .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-                //Obtener ingresos y descuentos
-                List<IngresosEntity> ingresosSinMapear = ingresosDAO.encontrarReportesPorFechaYCodigo(ajustarFecha(fechaInicio), ajustarFecha(fechaFin), codigo.getCodigo());
+                // Obtener ingresos y descuentos
+                List<IngresosEntity> ingresosSinMapear = ingresosDAO.encontrarReportesPorFechaYCodigo(
+                        ajustarFecha(fechaInicio), ajustarFecha(fechaFin), codigo.getCodigo());
 
                 List<IngresoDTORes> listaIngresosPositivos = new ArrayList<>();
                 List<IngresoDTORes> listaDescuentos = new ArrayList<>();
@@ -65,10 +65,11 @@ public class ReporteMacroServiceImpl implements ReporteMacroService {
                     String cuentaMovimiento = ingresosEntity.getCuenta_movimiento();
                     String codigoTipo = cuentaMovimiento.substring(cuentaMovimiento.lastIndexOf(".") + 1);
 
-                    if (fechaGasto.before(fechaFin) && fechaGasto.after(fechaInicio) && codigoTipo.equals(codigo.getCodigo())) {
+                    if (fechaGasto.before(fechaFin) && fechaGasto.after(fechaInicio)
+                            && codigoTipo.equals(codigo.getCodigo())) {
                         IngresoDTORes ingresoDTO = ingresoMapper.ingresoEntityToIngresoDTO(ingresosEntity);
-                        double valorEjecutado = ingresosEntity.getValor_ejecutado().doubleValue(); // Convertir a double
-                        if (ingresoDTO.getObservacion().contains("DESCUENTO") || ingresoDTO.getObservacion().contains("DESCUENTOS")) {
+                        if (ingresoDTO.getObservacion().contains("DESCUENTO")
+                                || ingresoDTO.getObservacion().contains("DESCUENTOS")) {
                             listaDescuentos.add(ingresoDTO);
                         } else {
                             listaIngresosPositivos.add(ingresoDTO);
@@ -84,10 +85,9 @@ public class ReporteMacroServiceImpl implements ReporteMacroService {
                         .mapToDouble(gasto -> (double) gasto.getValor_ejecutado())
                         .sum());
 
-
                 String codigoEncontrado = codigosDAO.encontrarPosgradoPorCodigo(codigo.getCodigo()).getDescripcion();
 
-                //Armar el consolidado
+                // Armar el consolidado
                 ConsolidadoDTORes consolidado = new ConsolidadoDTORes();
                 consolidado.setTotal_ingresos(sumaIngreso);
                 consolidado.setTotal_descuentos(sumaDescuentos);
@@ -104,7 +104,7 @@ public class ReporteMacroServiceImpl implements ReporteMacroService {
                 consolidado.setNombrePosgrado(codigoEncontrado);
                 consolidado.setCodigoPosgrado(codigo.getCodigo());
 
-                System.out.println(consolidado.getNombrePosgrado()+" "+consolidado.getSaldo());
+                System.out.println(consolidado.getNombrePosgrado() + " " + consolidado.getSaldo());
                 reporte.getConsolidados().add(consolidado);
             }
         }

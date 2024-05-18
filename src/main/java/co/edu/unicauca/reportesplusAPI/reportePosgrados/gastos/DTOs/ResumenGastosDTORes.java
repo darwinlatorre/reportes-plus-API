@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import lombok.Builder;
-import lombok.NoArgsConstructor;
 
 @Builder
 @Component
@@ -19,7 +18,8 @@ public class ResumenGastosDTORes {
     private String nombrePosgrado;
     private List<GastoDTORes> listaGastos;
 
-    public ResumenGastosDTORes(){}
+    public ResumenGastosDTORes() {
+    }
 
     public ResumenGastosDTORes(Date fechaInicio, Date fechaFin, BigDecimal gastoTotal, String codigo,
             String nombrePosgrado, List<GastoDTORes> listaGastos) {
