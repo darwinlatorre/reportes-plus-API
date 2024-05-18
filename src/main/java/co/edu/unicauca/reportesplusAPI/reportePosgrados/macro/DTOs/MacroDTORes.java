@@ -1,4 +1,4 @@
-package co.edu.unicauca.reportesplusAPI.reportePosgrados.reporteMacro.DTOs;
+package co.edu.unicauca.reportesplusAPI.reportePosgrados.macro.DTOs;
 
 import java.util.Date;
 import java.util.List;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
-public class ReporteMacroDTORes {
+public class MacroDTORes {
     private Date fechaInicio;
     private Date fechaFin;
     private List<ConsolidadoDTORes> consolidados;

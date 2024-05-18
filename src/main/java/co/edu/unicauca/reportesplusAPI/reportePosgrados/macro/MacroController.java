@@ -1,4 +1,4 @@
-package co.edu.unicauca.reportesplusAPI.reportePosgrados.reporteMacro;
+package co.edu.unicauca.reportesplusAPI.reportePosgrados.macro;
 
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -15,30 +15,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.reporteMacro.DTOs.ReporteMacroDTORes;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.reporteMacro.service.ReporteMacroService;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.macro.DTOs.MacroDTORes;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.macro.service.MacroService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/posgrados/reportemacro")
 @Tag(name = "Controlador del reporte macro de posgrados", description = "Endpoint para permitir generar el reporte macro con los consolidados de todos los posgrados registrados")
-public class ReporteMacroController {
+public class MacroController {
 
     @Autowired
-    private ReporteMacroService reporteMacroService;
+    private MacroService reporteMacroService;
 
     @GetMapping("/fecha")
-    public ResponseEntity<ReporteMacroDTORes> generarReporte(
+    public ResponseEntity<MacroDTORes> generarReporte(
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
             @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin,
             @RequestParam("codigo") String codigo)
             throws SQLException {
-        ReporteMacroDTORes reporte = reporteMacroService.generarReporteMacro(fechaInicio, fechaFin, codigo);
+        MacroDTORes reporte = reporteMacroService.generarReporteMacro(fechaInicio, fechaFin, codigo);
         return new ResponseEntity<>(reporte, HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<ReporteMacroDTORes> obtenenerReportePorMes(
+    public ResponseEntity<MacroDTORes> obtenenerReportePorMes(
             @RequestParam("mes") String mes,
             @RequestParam("anio") Integer anio,
             @RequestParam("codigo") String codigo) throws SQLException, ParseException {
@@ -68,7 +68,7 @@ public class ReporteMacroController {
         // Obtener la fecha de final de mes (primer día del siguiente mes)
         Date fechaFin = calendarioFin.getTime();
 
-        ReporteMacroDTORes reporte = reporteMacroService.generarReporteMacro(fechaInicio, fechaFin, codigo);
+        MacroDTORes reporte = reporteMacroService.generarReporteMacro(fechaInicio, fechaFin, codigo);
         return new ResponseEntity<>(reporte, HttpStatus.OK);
     }
 }
