@@ -1,17 +1,11 @@
 package co.edu.unicauca.reportesplusAPI.reportePosgrados.macro;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.DTOs.ConsolidadoDTORes;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.tomcat.util.http.fileupload.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -24,8 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.macro.DTOs.MacroDTORes;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.macro.service.MacroService;
 import io.swagger.v3.oas.annotations.tags.Tag;
-
-import org.springframework.http.MediaType;
 
 @RestController
 @RequestMapping("/posgrados/reportemacro")
