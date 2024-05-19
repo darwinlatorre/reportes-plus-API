@@ -17,6 +17,7 @@ public class MacroExcelService {
 
     @Autowired
     private MacroService reporteMacroService;
+
     public byte[] generarReporteExcel(Date fechaInicio, Date fechaFin, String codigo) throws SQLException {
 
         XSSFWorkbook workbook = new XSSFWorkbook();

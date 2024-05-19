@@ -1,5 +1,6 @@
 package co.edu.unicauca.reportesplusAPI.reportePosgrados.ingresos.DAO;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
@@ -21,9 +22,9 @@ public class IngresosEntity {
     private String observacion;
     // FIXME: categoria aparece en el diagrama pero no en la bd.
     // private String categoria;
-    private Number id_tercero;
+    private BigDecimal id_tercero;
     private String nombre_tercero;
-    private Number valor_ejecutado;
+    private BigDecimal valor_ejecutado;
 
     // Getter para id
     public Integer getId() {
@@ -86,12 +87,12 @@ public class IngresosEntity {
     }
 
     // Getter para id_tercero
-    public Number getId_tercero() {
+    public BigDecimal getId_tercero() {
         return id_tercero;
     }
 
     // Setter para id_tercero
-    public void setId_tercero(Number id_tercero) {
+    public void setId_tercero(BigDecimal id_tercero) {
         this.id_tercero = id_tercero;
     }
 
@@ -106,12 +107,12 @@ public class IngresosEntity {
     }
 
     // Getter para valor_ejecutado
-    public Number getValor_ejecutado() {
+    public BigDecimal getValor_ejecutado() {
         return valor_ejecutado;
     }
 
     // Setter para valor_ejecutado
-    public void setValor_ejecutado(Number valor_ejecutado) {
+    public void setValor_ejecutado(BigDecimal valor_ejecutado) {
         this.valor_ejecutado = valor_ejecutado;
     }
 

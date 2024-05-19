@@ -31,6 +31,36 @@ public class ResumenGastosDTORes {
         this.listaGastos = listaGastos;
     }
 
+    public BigDecimal getSumaValorDefinitivo() {
+        return listaGastos.stream()
+                .map(gasto -> gasto.getValor_definitivo())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal getSumaValorRegistros() {
+        return listaGastos.stream()
+                .map(gasto -> gasto.getValor_registro())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal getSumaValorEjecutado() {
+        return listaGastos.stream()
+                .map(gasto -> gasto.getValor_ejecutado())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal getSumaValorPagado() {
+        return listaGastos.stream()
+                .map(gasto -> gasto.getValor_pagado())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal getSumaValorSaldo() {
+        return listaGastos.stream()
+                .map(gasto -> gasto.getSaldo())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
     public Date getFechaInicio() {
         return fechaInicio;
     }

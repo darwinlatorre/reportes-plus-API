@@ -80,12 +80,13 @@ public class ReporteMacroServiceImpl implements MacroService {
                                 }
 
                                 // sacar la suma de los ingresos y la suma de los descuentos
-                                BigDecimal sumaIngreso = new BigDecimal((float) listaIngresosPositivos.stream()
-                                                .mapToDouble(gasto -> (double) gasto.getValor_ejecutado())
-                                                .sum());
-                                BigDecimal sumaDescuentos = new BigDecimal((float) listaDescuentos.stream()
-                                                .mapToDouble(gasto -> (double) gasto.getValor_ejecutado())
-                                                .sum());
+                                BigDecimal sumaIngreso = listaIngresosPositivos.stream()
+                                                .map(ingreso -> ingreso.getValor_ejecutado())
+                                                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+                                BigDecimal sumaDescuentos = listaDescuentos.stream()
+                                                .map(descuento -> descuento.getValor_ejecutado())
+                                                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
                                 String codigoEncontrado = codigosDAO.encontrarPosgradoPorCodigo(codigo.getCodigo())
                                                 .getDescripcion();

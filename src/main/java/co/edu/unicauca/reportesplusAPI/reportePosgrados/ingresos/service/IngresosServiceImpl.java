@@ -80,12 +80,13 @@ public class IngresosServiceImpl implements IngresosService {
         List<IngresoDTORes> descuentos = ingresosMapeados.get(1);
 
         // sacar la suma de los ingresos y la suma de los descuentos
-        float sumaIngreso = (float) ingresos.stream()
-                .mapToDouble(gasto -> (double) gasto.getValor_ejecutado())
-                .sum();
-        float sumaDescuentos = (float) descuentos.stream()
-                .mapToDouble(gasto -> (double) gasto.getValor_ejecutado())
-                .sum();
+        BigDecimal sumaIngreso = ingresos.stream()
+                .map(ingreso -> ingreso.getValor_ejecutado())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal sumaDescuentos = descuentos.stream()
+                .map(descuento -> descuento.getValor_ejecutado())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         // set al DTO
 
@@ -94,8 +95,8 @@ public class IngresosServiceImpl implements IngresosService {
         reporte.setCodigoPosgrado(codigo);
         reporte.setIngresos(ingresos);
         reporte.setDescuentos(descuentos);
-        reporte.setTotal_ingresos(BigDecimal.valueOf(sumaIngreso));
-        reporte.setTotal_descuentos(BigDecimal.valueOf(sumaDescuentos));
+        reporte.setTotal_ingresos(sumaIngreso);
+        reporte.setTotal_descuentos(sumaDescuentos);
         reporte.setNombrePosgrado(codigosDAO.encontrarPosgradoPorCodigo(codigo).getDescripcion());
 
         return reporte;
