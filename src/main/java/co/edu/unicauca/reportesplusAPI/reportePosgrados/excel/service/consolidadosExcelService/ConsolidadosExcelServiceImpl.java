@@ -6,12 +6,16 @@ import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.excel.sheetStyles.sheetStylerCells;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.DTOs.ConsolidadoDTORes;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.service.ConsolidadoService;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.excel.sheetStyles.sheetStylerCells;
 
 @Service
 public class ConsolidadosExcelServiceImpl implements ConsolidadosExcelService {
@@ -50,11 +54,10 @@ public class ConsolidadosExcelServiceImpl implements ConsolidadosExcelService {
                 + consolidadoDTORes.getNombrePosgrado().toUpperCase(), 1, 2);
 
         CellStyle infoStyle = sheet.getWorkbook().createCellStyle();
-        Map<Integer,String> colors= new TreeMap();
-        colors.put(2,"B8CCE4");
-        colors.put(4,"B8CCE4");
-        colors.put(6,"7DB8B6");
-
+        Map<Integer, String> colors = new TreeMap();
+        colors.put(2, "B8CCE4");
+        colors.put(4, "B8CCE4");
+        colors.put(6, "7DB8B6");
 
         for (int i = 0; i < headers.length; i++) {
             Row row = sheet.createRow(i + 2);

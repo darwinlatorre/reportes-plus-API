@@ -1,18 +1,21 @@
 package co.edu.unicauca.reportesplusAPI.reportePosgrados.excel.service.macroExcelService;
 
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.DTOs.ConsolidadoDTORes;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.excel.sheetStyles.sheetStylerCells;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.macro.DTOs.MacroDTORes;
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.macro.service.MacroService;
-import org.apache.poi.xssf.usermodel.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.DTOs.ConsolidadoDTORes;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.excel.sheetStyles.sheetStylerCells;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.macro.DTOs.MacroDTORes;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.macro.service.MacroService;
 
 @Service
 public class MacroExcelServiceImpl implements MacroExcelService {
@@ -22,6 +25,7 @@ public class MacroExcelServiceImpl implements MacroExcelService {
 
     @Autowired
     sheetStylerCells sheetStylerCells;
+
     @Override
     public byte[] generarReporteExcel(Date fechaInicio, Date fechaFin, String codigo) throws SQLException {
 
@@ -36,7 +40,6 @@ public class MacroExcelServiceImpl implements MacroExcelService {
         String fechaInicioFormateada = dateFormat.format(fechaInicio);
         String fechaFinFormateada = dateFormat.format(fechaFin);
 
-
         String informacionReporte = "Reporte Macro DE "
                 + fechaInicioFormateada
                 + " A "
@@ -45,16 +48,12 @@ public class MacroExcelServiceImpl implements MacroExcelService {
         sheetStylerCells.setStyleInfoSheet(sheet, informacionReporte, 0, 9);
 
         String[] sheetColumns = { "Código Posgrado", "Nombre Posgrado", "Total Ingresos",
-                "Total Descuentos","Total Neto","Contribución","Total Disponible","Gastos Certificados","Saldo" };
+                "Total Descuentos", "Total Neto", "Contribución", "Total Disponible", "Gastos Certificados", "Saldo" };
 
-       
-        int[] columnWidths = { 10 * 256, 50 * 256,12 * 256, 12 * 256, 12 * 256,12 * 256, 12 * 256, 12 * 256,
-            12 * 256};
+        int[] columnWidths = { 10 * 256, 50 * 256, 12 * 256, 12 * 256, 12 * 256, 12 * 256, 12 * 256, 12 * 256,
+                12 * 256 };
 
         sheetStylerCells.setHeaderIngresosDescuentosStyle(sheet, sheetColumns, columnWidths, "#A5A5A5");
-
-
-
 
         int rowNum = 4;
         for (ConsolidadoDTORes consolidado : reporte.getConsolidados()) {
@@ -72,6 +71,7 @@ public class MacroExcelServiceImpl implements MacroExcelService {
 
         try (ByteArrayOutputStream bos = new ByteArrayOutputStream()) {
             workbook.write(bos);
+            workbook.close();
             return bos.toByteArray();
         } catch (IOException e) {
             throw new RuntimeException(e);
