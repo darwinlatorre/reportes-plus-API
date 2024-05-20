@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.unicauca.reportesplusAPI.reportePosgrados.excel.service.MacroExcelService;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.excel.service.macroExcelService.MacroExcelServiceImpl;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.excel.service.reporteExcelBasicoService.ReporteExcelBasicoService;
 
 @RestController
 @RequestMapping("/posgrados/reporte/excel")
 public class ExcelController {
         @Autowired
-        private MacroExcelService reporteExcelService;
+        private MacroExcelServiceImpl reporteExcelService;
         @Autowired
         private ReporteExcelBasicoService reporteExcelBasicoService;
 

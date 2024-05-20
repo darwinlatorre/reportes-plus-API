@@ -75,7 +75,7 @@ public class sheetStylerCells {
         }
     }
 
-    private void setFgColor(String HexForegroundColor, CellStyle cellStyle) {
+    public void setFgColor(String HexForegroundColor, CellStyle cellStyle) {
         if (HexForegroundColor != null && !HexForegroundColor.isEmpty()) {
             Color Color = hexToColor(HexForegroundColor);
             XSSFColor bgColor = new XSSFColor(Color, null);
@@ -145,5 +145,39 @@ public class sheetStylerCells {
         int b = Integer.parseInt(hex.substring(4, 6), 16);
 
         return new Color(r, g, b);
+    }
+
+    public void setTituloConsolidado(Sheet sheet, String nombrePrograma, int startRow, int endRow) {
+        Row tituloRow = sheet.createRow(startRow);
+        Cell tituloCell = tituloRow.createCell(0);
+        tituloCell.setCellValue(nombrePrograma);
+        sheet.addMergedRegion(new CellRangeAddress(startRow, startRow, 0, endRow - 1));
+
+        CellStyle infoStyle = sheet.getWorkbook().createCellStyle();
+        infoStyle.setAlignment(HorizontalAlignment.CENTER);
+        infoStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+
+
+        int titleLength = tituloCell.getStringCellValue().length();
+        int estimatedCharWidth = 150;
+        int desiredWidth = titleLength * estimatedCharWidth;
+
+        int maxColumnWidth = sheet.getColumnWidth(0);
+        for (int i = 1; i < endRow; i++) {
+            int columnWidth = sheet.getColumnWidth(i);
+            maxColumnWidth = Math.max(maxColumnWidth, columnWidth);
+        }
+        desiredWidth = Math.max(desiredWidth, maxColumnWidth);
+        sheet.setColumnWidth(0, desiredWidth);
+        sheet.setColumnWidth(1, desiredWidth);
+
+        setFgColor("#366092", infoStyle);
+
+
+
+        Font infoFont = sheet.getWorkbook().createFont();
+        infoFont.setBold(true);
+        infoStyle.setFont(infoFont);
+        tituloCell.setCellStyle(infoStyle);
     }
 }

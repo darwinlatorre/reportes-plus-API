@@ -109,7 +109,6 @@ public class ReporteMacroServiceImpl implements MacroService {
                                 consolidado.setNombrePosgrado(codigoEncontrado);
                                 consolidado.setCodigoPosgrado(codigo.getCodigo());
 
-                                System.out.println(consolidado.getNombrePosgrado() + " " + consolidado.getSaldo());
                                 reporte.getConsolidados().add(consolidado);
                         }
                 }

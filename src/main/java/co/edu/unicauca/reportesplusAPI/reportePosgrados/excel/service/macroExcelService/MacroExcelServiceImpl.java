@@ -1,6 +1,7 @@
-package co.edu.unicauca.reportesplusAPI.reportePosgrados.excel.service;
+package co.edu.unicauca.reportesplusAPI.reportePosgrados.excel.service.macroExcelService;
 
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.consolidado.DTOs.ConsolidadoDTORes;
+import co.edu.unicauca.reportesplusAPI.reportePosgrados.excel.sheetStyles.sheetStylerCells;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.macro.DTOs.MacroDTORes;
 import co.edu.unicauca.reportesplusAPI.reportePosgrados.macro.service.MacroService;
 import org.apache.poi.xssf.usermodel.*;
@@ -10,39 +11,52 @@ import org.springframework.stereotype.Service;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
-public class MacroExcelService {
+public class MacroExcelServiceImpl implements MacroExcelService {
 
     @Autowired
     private MacroService reporteMacroService;
 
+    @Autowired
+    sheetStylerCells sheetStylerCells;
+    @Override
     public byte[] generarReporteExcel(Date fechaInicio, Date fechaFin, String codigo) throws SQLException {
 
         XSSFWorkbook workbook = new XSSFWorkbook();
 
         XSSFSheet sheet = workbook.createSheet("Reporte");
 
-        XSSFRow headerRow = sheet.createRow(0);
-        headerRow.createCell(0).setCellValue("Código Posgrado");
-        headerRow.createCell(1).setCellValue("Nombre Posgrado");
-        headerRow.createCell(2).setCellValue("Total Ingresos");
-        headerRow.createCell(3).setCellValue("Total Descuentos");
-        headerRow.createCell(4).setCellValue("Total Neto");
-        headerRow.createCell(5).setCellValue("Contribución");
-        headerRow.createCell(6).setCellValue("Total Disponible");
-        headerRow.createCell(7).setCellValue("Gastos Certificados");
-        headerRow.createCell(8).setCellValue("Saldo");
-
         MacroDTORes reporte = reporteMacroService.generarReporteMacro(fechaInicio, fechaFin, codigo);
 
-        XSSFCellStyle headerCellStyle = workbook.createCellStyle();
-        XSSFFont headerFont = workbook.createFont();
-        headerFont.setBold(true);
-        headerCellStyle.setFont(headerFont);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
-        int rowNum = 1;
+        String fechaInicioFormateada = dateFormat.format(fechaInicio);
+        String fechaFinFormateada = dateFormat.format(fechaFin);
+
+
+        String informacionReporte = "Reporte Macro DE "
+                + fechaInicioFormateada
+                + " A "
+                + fechaFinFormateada;
+
+        sheetStylerCells.setStyleInfoSheet(sheet, informacionReporte, 0, 9);
+
+        String[] sheetColumns = { "Código Posgrado", "Nombre Posgrado", "Total Ingresos",
+                "Total Descuentos","Total Neto","Contribución","Total Disponible","Gastos Certificados","Saldo" };
+
+       
+        int[] columnWidths = { 10 * 256, 50 * 256,12 * 256, 12 * 256, 12 * 256,12 * 256, 12 * 256, 12 * 256,
+            12 * 256};
+
+        sheetStylerCells.setHeaderIngresosDescuentosStyle(sheet, sheetColumns, columnWidths, "#A5A5A5");
+
+
+
+
+        int rowNum = 4;
         for (ConsolidadoDTORes consolidado : reporte.getConsolidados()) {
             XSSFRow row = sheet.createRow(rowNum++);
             row.createCell(0).setCellValue(consolidado.getCodigoPosgrado());
