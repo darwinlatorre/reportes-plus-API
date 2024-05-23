@@ -6,6 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -21,27 +26,44 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/posgrados/reporte/consolidado")
-@Tag(name = "Controlador de reportes(consolidado) de posgrados", description = "Endpoint para permitir generar el consoliddado de los reportes de ingresos y gastos")
+@Tag(name = "Controlador de reportes(consolidado) de posgrados", description = "Operaciones relacionadas con el consolidado")
 public class ConsolidadoController {
     @Autowired
     ConsolidadoService vConsolidadoService;
 
     @GetMapping("/fecha")
+    @Operation(summary = "Obtener consolidado por fecha", description = "Obtiene el consolidado para un rango de fechas y un código dado.")
+    @ApiResponse(responseCode = "200", description = "Consolidado encontrado", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ConsolidadoDTORes.class))})
+    @ApiResponse(responseCode = "404", description = "Consolidado no encontrado")
+
     public ResponseEntity<ConsolidadoDTORes> encontrarConsolidadoPorFecha(
+            @Parameter(description = "Fecha de inicio en formato ISO (YYYY-MM-DD)", required = true)
             @RequestParam("fechaInicio") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaInicio,
+            @Parameter(description = "Fecha de fin en formato ISO (YYYY-MM-DD)", required = true)
             @RequestParam("fechaFin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaFin,
+            @Parameter(description = "Código del consolidado", required = true)
             @RequestParam("codigo") String codigo) throws SQLException {
-        ConsolidadoDTORes consolidado = vConsolidadoService.generarConsolidado(fechaInicio, fechaFin,
+        ConsolidadoDTORes vConsolidado = vConsolidadoService.generarConsolidado(fechaInicio, fechaFin,
                 codigo);
-        if (consolidado == null)
-            return new ResponseEntity<>(consolidado, HttpStatus.NOT_FOUND);
-        return new ResponseEntity<>(consolidado, HttpStatus.OK);
+        if (vConsolidado != null) {
+            return ResponseEntity.ok(vConsolidado);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @GetMapping
+    @Operation(summary = "Obtener consolidado por mes", description = "Obtiene el consolidado para un mes, un año específico y un código dado.")
+    @ApiResponse(responseCode = "200", description = "Consolidado encontrado",
+            content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ConsolidadoDTORes.class))})
+    @ApiResponse(responseCode = "404", description = "Consolidado no encontrado")
+
     public ResponseEntity<ConsolidadoDTORes> encontrarConsolidadoPorMes(
+            @Parameter(description = "Nombre del mes (ej. 'enero', 'febrero', etc.)", required = true)
             @RequestParam("mes") String mes,
+            @Parameter(description = "Año", required = true)
             @RequestParam("anio") Integer anio,
+            @Parameter(description = "Código del consolidado", required = true)
             @RequestParam("codigo") String codigo) throws SQLException, ParseException {
 
         // Crear un formato para el nombre del mes
@@ -69,12 +91,12 @@ public class ConsolidadoController {
         // Obtener la fecha de final de mes (primer día del siguiente mes)
         Date fechaFin = calendarioFin.getTime();
 
-        ConsolidadoDTORes consolidado = vConsolidadoService.generarConsolidado(fechaInicio, fechaFin,
-                codigo);
-        /*
-         * if(consolidado==null)
-         * return new ResponseEntity<>(consolidado, HttpStatus.NOT_FOUND);
-         */
-        return new ResponseEntity<>(consolidado, HttpStatus.OK);
+        ConsolidadoDTORes vConsolidado = vConsolidadoService.generarConsolidado(fechaInicio, fechaFin,codigo);
+        if (vConsolidado != null) {
+            return ResponseEntity.ok(vConsolidado);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
     }
 }

@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -21,6 +22,7 @@ import co.edu.unicauca.reportesplusAPI.reportePosgrados.excel.service.reporteExc
 
 @RestController
 @RequestMapping("/posgrados/reporte/excel")
+@Tag(name = "Controlador del reporte en excel", description = "Operaciones relacionadas con la generación de reportes en Excel")
 public class ExcelController {
         @Autowired
         private MacroExcelServiceImpl reporteExcelService;
