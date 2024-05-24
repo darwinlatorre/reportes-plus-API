@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="787e1c8d-b81b-408b-8355-f5d662b417ee" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/auth/authController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/auth/authController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/consolidado/ConsolidadoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/consolidado/ConsolidadoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/excel/ExcelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/excel/ExcelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/gastos/GastosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/gastos/GastosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/ingresos/IngresosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/ingresos/IngresosController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/macro/MacroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/unicauca/reportesplusAPI/reportePosgrados/macro/MacroController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +98,7 @@
       <updated>1715110325856</updated>
       <workItem from="1715110329861" duration="1742000" />
       <workItem from="1715322775238" duration="1046000" />
-      <workItem from="1716504936364" duration="540000" />
+      <workItem from="1716504936364" duration="3608000" />
     </task>
     <servers />
   </component>

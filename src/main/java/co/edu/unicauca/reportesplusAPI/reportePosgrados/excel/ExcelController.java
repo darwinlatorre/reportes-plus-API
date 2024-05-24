@@ -7,6 +7,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -30,10 +35,18 @@ public class ExcelController {
         private ReporteExcelBasicoService reporteExcelBasicoService;
 
         @GetMapping("/ingreso-gastos")
+        @Operation(summary = "Generar reporte de ingresos y gastos",
+                description = "Genera un reporte en formato Excel de los ingresos y gastos para un mes,año específico y un código dado.")
+        @ApiResponse(responseCode = "200", description = "Archivo Excel generado correctamente",
+                content = {@Content(mediaType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        schema = @Schema(type = "string", format = "binary"))})
         public ResponseEntity<byte[]> generarReporteIngresoGastos(
-                        @RequestParam("mes") String mes,
-                        @RequestParam("anio") Integer anio,
-                        @RequestParam("codigo") String codigo) throws SQLException, IOException, ParseException {
+                @Parameter(description = "Nombre del mes (ej. 'enero', 'febrero', etc.)", required = true)
+                @RequestParam("mes") String mes,
+                @Parameter(description = "Año", required = true)
+                @RequestParam("anio") Integer anio,
+                @Parameter(description = "Código", required = true)
+                @RequestParam("codigo") String codigo) throws SQLException, IOException, ParseException {
 
                 SimpleDateFormat formatoMes = new SimpleDateFormat("MMMM");
 
@@ -67,10 +80,18 @@ public class ExcelController {
         }
 
         @GetMapping("/macro")
+        @Operation(summary = "Generar reporte macro en Excel",
+                description = "Genera un reporte macro en formato Excel para un mes, año específico y un código dado.")
+        @ApiResponse(responseCode = "200", description = "Archivo Excel generado correctamente",
+                content = {@Content(mediaType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        schema = @Schema(type = "string", format = "binary"))})
         public ResponseEntity<byte[]> generarReporteExcel(
-                        @RequestParam("mes") String mes,
-                        @RequestParam("anio") Integer anio,
-                        @RequestParam("codigo") String codigo) throws SQLException, ParseException {
+                @Parameter(description = "Nombre del mes (ej. 'enero', 'febrero', etc.)", required = true)
+                @RequestParam("mes") String mes,
+                @Parameter(description = "Año", required = true)
+                @RequestParam("anio") Integer anio,
+                @Parameter(description = "Código", required = true)
+                @RequestParam("codigo") String codigo) throws SQLException, ParseException {
 
                 // Crear un formato para el nombre del mes
                 SimpleDateFormat formatoMes = new SimpleDateFormat("MMMM");
