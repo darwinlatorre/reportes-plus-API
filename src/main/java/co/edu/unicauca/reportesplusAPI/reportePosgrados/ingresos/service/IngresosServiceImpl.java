@@ -71,6 +71,15 @@ public class IngresosServiceImpl implements IngresosService {
     public IngresosDTORes generarReporte(Date fechaInicio, Date fechaFin, String codigo)
             throws SQLException {
 
+        String posgradoEncontrado="";
+        try {
+            posgradoEncontrado = codigosDAO.encontrarPosgradoPorCodigo(codigo).getDescripcion();
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+
         // crear el DTO
         IngresosDTORes reporte = new IngresosDTORes();
 

@@ -25,10 +25,15 @@ public class ConsolidadoServiceImpl implements ConsolidadoService {
         private CodigosDAO codigosDAO;
 
         @Override
-        public ConsolidadoDTORes generarConsolidado(Date fechaInicio, Date fechaFin, String codigo)
-                        throws SQLException {
-
-                String codigoEncontrado = codigosDAO.encontrarPosgradoPorCodigo(codigo).getDescripcion();
+        public ConsolidadoDTORes generarConsolidado(Date fechaInicio, Date fechaFin, String codigo) throws SQLException {
+                String codigoEncontrado="";
+                try{
+                        codigoEncontrado = codigosDAO.encontrarPosgradoPorCodigo(codigo).getDescripcion();
+                }
+                catch (Exception e)
+                {
+                        return null;
+                }
                 if (codigoEncontrado != null) {
                         ConsolidadoDTORes consolidado = new ConsolidadoDTORes();
                         ResumenGastosDTORes gastos = gastosService.generarReporte(fechaInicio, fechaFin,

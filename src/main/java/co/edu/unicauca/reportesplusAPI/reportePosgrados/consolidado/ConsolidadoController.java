@@ -48,7 +48,7 @@ public class ConsolidadoController {
         if (vConsolidado != null) {
             return ResponseEntity.ok(vConsolidado);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
@@ -95,7 +95,7 @@ public class ConsolidadoController {
         if (vConsolidado != null) {
             return ResponseEntity.ok(vConsolidado);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
     }

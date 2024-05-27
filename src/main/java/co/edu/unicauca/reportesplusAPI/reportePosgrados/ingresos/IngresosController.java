@@ -104,7 +104,7 @@ public class IngresosController {
         if (vReporte!= null) {
             return ResponseEntity.ok(vReporte);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 }
