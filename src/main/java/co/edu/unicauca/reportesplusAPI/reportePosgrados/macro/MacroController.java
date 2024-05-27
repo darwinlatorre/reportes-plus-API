@@ -98,10 +98,10 @@ public class MacroController {
         Date fechaFin = calendarioFin.getTime();
 
         MacroDTORes vReporte = reporteMacroService.generarReporteMacro(fechaInicio, fechaFin, codigo);
-        if (vReporte != null) {
+        if (vReporte != null && !vReporte.getConsolidados().isEmpty()) {
             return ResponseEntity.ok(vReporte);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
