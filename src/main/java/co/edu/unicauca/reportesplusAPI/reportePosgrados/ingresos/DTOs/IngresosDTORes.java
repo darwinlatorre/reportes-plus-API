@@ -15,8 +15,19 @@ public class IngresosDTORes {
     private BigDecimal total_ingresos;
     private BigDecimal total_descuentos;
     private List<IngresoDTORes> ingresos;
-
     private List<IngresoDTORes> descuentos;
+
+    public BigDecimal getSumaValorEjecutado() {
+        return ingresos.stream()
+                .map(ingreso -> new BigDecimal(ingreso.getValor_ejecutado().toString()))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal getSumaValorDecuentosEjecutado() {
+        return ingresos.stream()
+                .map(descuentos -> new BigDecimal(descuentos.getValor_ejecutado().toString()))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
 
     public Date getFechaInicio() {
         return fechaInicio;

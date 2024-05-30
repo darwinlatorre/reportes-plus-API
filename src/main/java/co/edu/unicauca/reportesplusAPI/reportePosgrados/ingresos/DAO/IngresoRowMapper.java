@@ -17,9 +17,9 @@ public class IngresoRowMapper implements RowMapper<IngresosEntity> {
         IngresosEntity.setFecha(resultSet.getDate("MODEFECH"));
         IngresosEntity.setCuenta_movimiento(resultSet.getString("MODECUMO"));
         IngresosEntity.setObservacion(resultSet.getString("MODEOBSE"));
-        IngresosEntity.setId_tercero(resultSet.getDouble("MODETERC"));
+        IngresosEntity.setId_tercero(resultSet.getBigDecimal("MODETERC"));
         IngresosEntity.setNombre_tercero(resultSet.getString("TERCDESC"));
-        IngresosEntity.setValor_ejecutado(resultSet.getDouble("MODEVALO"));
+        IngresosEntity.setValor_ejecutado(resultSet.getBigDecimal("MODEVALO"));
 
         return IngresosEntity;
     }

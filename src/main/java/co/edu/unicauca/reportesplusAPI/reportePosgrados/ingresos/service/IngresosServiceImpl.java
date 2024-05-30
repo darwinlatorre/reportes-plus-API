@@ -52,8 +52,8 @@ public class IngresosServiceImpl implements IngresosService {
 
             if (fechaGasto.before(fechaFin) && fechaGasto.after(fechaInicio) && codigoTipo.equals(codigo)) {
                 IngresoDTORes ingresoDTO = ingresoMapper.ingresoEntityToIngresoDTO(ingresosEntity);
-                double valorEjecutado = ingresosEntity.getValor_ejecutado().doubleValue(); // Convertir a double
-                if (valorEjecutado < 0) {
+                if (ingresoDTO.getObservacion().contains("DESCUENTO")
+                        || ingresoDTO.getObservacion().contains("DESCUENTOS")) {
                     listaDescuentos.add(ingresoDTO);
                 } else {
                     listaIngresosPositivos.add(ingresoDTO);
@@ -71,6 +71,15 @@ public class IngresosServiceImpl implements IngresosService {
     public IngresosDTORes generarReporte(Date fechaInicio, Date fechaFin, String codigo)
             throws SQLException {
 
+        String posgradoEncontrado="";
+        try {
+            posgradoEncontrado = codigosDAO.encontrarPosgradoPorCodigo(codigo).getDescripcion();
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+
         // crear el DTO
         IngresosDTORes reporte = new IngresosDTORes();
 
@@ -80,12 +89,13 @@ public class IngresosServiceImpl implements IngresosService {
         List<IngresoDTORes> descuentos = ingresosMapeados.get(1);
 
         // sacar la suma de los ingresos y la suma de los descuentos
-        float sumaIngreso = (float) ingresos.stream()
-                .mapToDouble(gasto -> (double) gasto.getValor_ejecutado())
-                .sum();
-        float sumaDescuentos = (float) descuentos.stream()
-                .mapToDouble(gasto -> (double) gasto.getValor_ejecutado())
-                .sum();
+        BigDecimal sumaIngreso = ingresos.stream()
+                .map(ingreso -> ingreso.getValor_ejecutado())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal sumaDescuentos = descuentos.stream()
+                .map(descuento -> descuento.getValor_ejecutado())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         // set al DTO
 
@@ -94,8 +104,8 @@ public class IngresosServiceImpl implements IngresosService {
         reporte.setCodigoPosgrado(codigo);
         reporte.setIngresos(ingresos);
         reporte.setDescuentos(descuentos);
-        reporte.setTotal_ingresos(BigDecimal.valueOf(sumaIngreso));
-        reporte.setTotal_descuentos(BigDecimal.valueOf(sumaDescuentos));
+        reporte.setTotal_ingresos(sumaIngreso);
+        reporte.setTotal_descuentos(sumaDescuentos);
         reporte.setNombrePosgrado(codigosDAO.encontrarPosgradoPorCodigo(codigo).getDescripcion());
 
         return reporte;

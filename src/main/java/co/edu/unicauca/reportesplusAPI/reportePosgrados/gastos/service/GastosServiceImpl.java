@@ -29,6 +29,7 @@ public class GastosServiceImpl implements GastosService {
 	public ResumenGastosDTORes generarReporte(Date fechaInicio, Date fechaFin, String codigo)
 			throws SQLException {
 
+
 		List<GastoEntity> GastoEntityList = gastosDAO.encontrarReportesPorFechaYCodigo(ajustarFecha(fechaInicio),
 				ajustarFecha(fechaFin), codigo);
 
@@ -38,7 +39,14 @@ public class GastosServiceImpl implements GastosService {
 				.map(gasto -> gasto.getValor_definitivo())
 				.reduce(BigDecimal.ZERO, BigDecimal::add);
 
-		String posgradoEncontrado = codigosDAO.encontrarPosgradoPorCodigo(codigo).getDescripcion();
+		String posgradoEncontrado="";
+		try {
+			posgradoEncontrado = codigosDAO.encontrarPosgradoPorCodigo(codigo).getDescripcion();
+		}
+		catch (Exception e)
+		{
+			return null;
+		}
 
 		ResumenGastosDTORes resumenGastosDTORes = new ResumenGastosDTORes();
 		resumenGastosDTORes.setFechaInicio(fechaInicio);
